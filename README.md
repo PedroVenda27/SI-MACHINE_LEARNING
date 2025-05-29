@@ -179,7 +179,7 @@ O objetivo final é gerar uma árvore de decisão que generalize bem os dados, p
 
 ### 2.2.6 Exemplo Prático (VIDEO)
 
-De forma A entender tudo isto de uma Maneira mais vizual deixo aqui um video de toda a explicação do Funcionamento do Algoritmo MinMax bem como o Funcionamento da Árvore de Decisão do mesmo
+De forma A entender tudo isto de uma Maneira mais vizual deixo aqui um video de toda a explicação do Funcionamento do Algoritmo ID3
 [VIDEO](https://www.youtube.com/watch?v=aLsReomQ7AA)
 
 
