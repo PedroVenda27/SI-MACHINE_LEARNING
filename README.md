@@ -97,49 +97,49 @@ Serão apresentados os algoritmos de aprendizagem supervisionada escolhidos, nom
 - 3. Avaliação e Interpretação dos Resultados  
 Por fim, serão analisados o desempenho dos modelos, considerando o tempo de processamento, utilização de memória e qualidade dos resultados, seguidos das conclusões do estudo.
 
-## 2.2 Descriçao dos Datasets (DIABETES E IRIS
+## 2.2 Descriçao dos Datasets (DIABETES E IRIS)
 
 ### 2.2.1 Dataset Diabetes
 
-O **Dataset Diabetes** é um conjunto de dados amplamente utilizado para tarefas de aprendizagem supervisionada, especialmente para problemas de classificação binária, como a previsão de diabetes em pacientes. Este dataset contém informações clínicas e biométricas de pacientes que podem ser usadas para prever a ocorrência de diabetes.
+O **Dataset Diabetes** é um conjunto de dados amplamente utilizado para tarefas de aprendizagem supervisionada, especialmente para problemas de **regressão**, como a previsão de valores contínuos relacionados à diabetes em pacientes. Este dataset contém informações clínicas e biométricas de pacientes que podem ser usadas para prever variáveis numéricas associadas ao estado de saúde.
 
 #### 2.2.1.1 Características principais:
 
-- **Número de instâncias:** 768
-- **Número de atributos:** 8 variáveis de entrada (features) + 1 variável alvo (target)
-- **Atributos de entrada:** incluem dados clínicos como:
-  - Número de gestações
-  - Índice de massa corporal (IMC)
-  - Pressão arterial diastólica
-  - Nível de insulina no sangue
-  - Idade do paciente
-  - Entre outros indicadores fisiológicos relevantes
-- **Variável alvo:** Indica se o paciente tem diabetes (1) ou não (0)
+- **Número de instâncias:** 768  
+- **Número de atributos:** 8 variáveis de entrada (features) + 1 variável alvo (target)  
+- **Atributos de entrada:** incluem dados clínicos como:  
+  - Número de gestações  
+  - Índice de massa corporal (IMC)  
+  - Pressão arterial diastólica  
+  - Nível de insulina no sangue  
+  - Idade do paciente  
+  - Entre outros indicadores fisiológicos relevantes  
+- **Variável alvo:** Valor numérico contínuo relacionado ao diagnóstico ou progresso da diabetes (exemplo: medida de glicose)  
 - **Origem:** Base de dados do National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)
 
 #### 2.2.1.2 Aplicação:
 
-O dataset é utilizado para treinar modelos que ajudem a prever o diagnóstico de diabetes com base nas características do paciente, sendo uma referência clássica para avaliação de algoritmos de classificação em Machine Learning.
+O dataset é utilizado para treinar modelos que realizem previsões numéricas (regressão) relacionadas à diabetes com base nas características do paciente, sendo uma referência clássica para avaliação de algoritmos de regressão em Machine Learning.
 
 ---
 
-### 2.2.2 Dataset Irís
+### 2.2.2 Dataset Iris
 
-O **Dataset Iris** é um dos datasets mais famosos para tarefas de classificação multiclasse, utilizado para identificar espécies de flores da planta **Iris** com base em medidas morfológicas.
+O **Dataset Iris** é um dos datasets mais famosos para tarefas de aprendizagem supervisionada de **classificação multiclasse**, utilizado para identificar espécies de flores da planta **Iris** com base em medidas morfológicas.
 
 #### 2.2.2.1 Características principais:
 
-- **Número de instâncias:** 150
-- **Número de atributos:** 4 variáveis de entrada + 1 variável alvo
-- **Atributos de entrada:**
-  - Comprimento da sépala (em cm)
-  - Largura da sépala (em cm)
-  - Comprimento da pétala (em cm)
-  - Largura da pétala (em cm)
-- **Variável alvo:** Espécie da flor, com três classes possíveis:
-  - *Iris setosa*
-  - *Iris versicolor*
-  - *Iris virginica*
+- **Número de instâncias:** 150  
+- **Número de atributos:** 4 variáveis de entrada + 1 variável alvo  
+- **Atributos de entrada:**  
+  - Comprimento da sépala (em cm)  
+  - Largura da sépala (em cm)  
+  - Comprimento da pétala (em cm)  
+  - Largura da pétala (em cm)  
+- **Variável alvo:** Espécie da flor, com três classes possíveis:  
+  - *Iris setosa*  
+  - *Iris versicolor*  
+  - *Iris virginica*  
 - **Origem:** Coletado por Ronald Fisher em 1936 para estudos estatísticos
 
 #### 2.2.2.2 Aplicação:
@@ -230,6 +230,54 @@ De forma A entender tudo isto de uma Maneira mais vizual deixo aqui um video de 
 [VIDEO](https://www.youtube.com/watch?v=aLsReomQ7AA)
 
 
+## 2.4 Algoritmo de Regressão Linear 
+
+O algoritmo **Regressão Linear** é uma técnica estatística e de aprendizagem supervisionada usada para modelar a relação entre uma variável dependente contínua e uma ou mais variáveis independentes (features). O objetivo é encontrar uma função linear que melhor ajuste os dados e permita prever valores futuros. Este é um dos algoritmos mais simples e amplamente utilizados para problemas de regressão.
+
+### 2.4.1 Funcionamento do Algoritmo
+
+O funcionamento da regressão linear baseia-se na modelação da relação entre uma variável dependente e uma ou mais variáveis independentes, ajustando uma função linear que minimiza a soma dos erros quadráticos entre os valores previstos e os valores observados, de forma a capturar a tendência dos dados para realizar previsões.O processo é o seguinte
+
+### 2.4.2 Modelo Linear
+
+Uma função linear univariada com input `x` e output `y` tem a forma `y = w<sub>1</sub>x + w<sub>0</sub>` onde `w<sub>0</sub>` e `w<sub>1</sub>` sâo coeficientes que temos de determinar.
+Estes coeficientes funcionam como pesos: o valor de `y` varia consoante opeso relativo de um termo ou outro.
+Vamos assumir que `w`e o vector `⟨w<sub>0</sub>,w<sub>1</sub>⟩` e a função linear com esses pesos é:
+
+`h<sub>w</sub>(x) = w<sub>1</sub> x + w<sub>0</sub>`
+
+O objectivo passa por encontrar a função `h<sub>w</sub>(X)` que melhor se ajusta aos dados. A esta tarefa chamamos regressao linear
+
+### 2.4.3 Ajuste dos Coeficientes
+
+O algoritmo busca encontrar os valores para os pesos `⟨w<sub>0</sub>,w<sub>1</sub>⟩` que minimizem um loss function 
+
+Uma loss function clássica em casos de regressão linear é a Squared-Error:
+
+`Loss(h<sub>w</sub>) = ∑<sub>j=1</sub><sup>N</sup> (y<sub>j</sub> − (w<sub>1</sub>x<sub>j</sub> + w<sub>0</sub>))²`
+
+O objectivo é minimizar a funçãoo Loss⟨h<sub>w</sub>⟩. A função é minima quando assuas derivadas parciais são zero:
+
+`∂/∂w<sub>0</sub> ∑<sub>j=1</sub><sup>N</sup> (y<sub>j</sub> − (w<sub>1</sub>x<sub>j</sub> + w<sub>0</sub>))² = 0`
+
+`∂/∂w<sub>1</sub> ∑<sub>j=1</sub><sup>N</sup> (y<sub>j</sub> − (w<sub>1</sub>x<sub>j</sub> + w<sub>0</sub>))² = 0`
+
+Estas equações tem uma solução única:
+
+`w<sub>1</sub> = [N ∑ x<sub>j</sub> y<sub>j</sub> − (∑ x<sub>j</sub>) (∑ y<sub>j</sub>)] / [N ∑ x<sub>j</sub><sup>2</sup> − (∑ x<sub>j</sub>)<sup>2</sup>]`
+
+`w<sub>0</sub> = (∑ y<sub>j</sub> − w<sub>1</sub> (∑ x<sub>j</sub>)) / N`
+
+Desta forma, a regressão linear cria um modelo onde cada coeficiente representa o peso atribuído a uma variável explicativa, e a combinação linear desses pesos com os valores dos atributos gera a previsão do valor da variável dependente.
+
+O objetivo final é encontrar os coeficientes que melhor ajustem os dados observados, permitindo prever novos exemplos de forma eficiente e precisa, minimizando o erro entre as predições e os valores reais.
+
+### 2.4.4 Código
+
+### 2.4.5 Exemplo Prático (VIDEO)
+
+De forma a entender tudo isto de uma maneira mais visual, deixo aqui um vídeo que explica detalhadamente o funcionamento do algoritmo de Regressão Linear:
+[VIDEO](https://www.youtube.com/watch?v=CtsRRUddV2s)
 
 
 
@@ -237,8 +285,7 @@ De forma A entender tudo isto de uma Maneira mais vizual deixo aqui um video de 
 
 
 
-
-## 2.3 Algoritmo SVM (Support Vector Machine)
+## 2.3 Algoritmo SVM (Support Vector Machine) (EXTRA)
 
 O algoritmo **Support Vector Machine (SVM)** é uma técnica poderosa de aprendizagem supervisionada utilizada principalmente para problemas de classificação e regressão. O seu principal objetivo é encontrar o hiperplano que melhor separa as classes num espaço de características, maximizando a margem entre os dados de diferentes classes.
 
@@ -259,39 +306,6 @@ O funcionamento do SVM baseia-se nos seguintes conceitos:
 - **Restrições e Otimização:** O problema de encontrar o hiperplano ótimo é formulado como um problema de otimização convexa, que pode ser resolvido eficientemente por métodos matemáticos como o método dos multiplicadores de Lagrange.
 
 Desta forma, o SVM constrói um modelo robusto para classificar novos dados, mesmo quando as classes não são linearmente separáveis no espaço original, apresentando bom desempenho em muitos cenários práticos.
-
-
-
-## 2.4 Algoritmo de Regressão Linear (EXTRA)
-
-A **Regressão Linear** é uma técnica estatística e de aprendizagem supervisionada usada para modelar a relação entre uma variável dependente contínua e uma ou mais variáveis independentes (features). O objetivo é encontrar uma função linear que melhor ajuste os dados e permita prever valores futuros.
-
-É um dos algoritmos mais simples e amplamente utilizados para problemas de regressão.
-
-### 2.4.1 Funcionamento do Algoritmo
-
-O funcionamento da Regressão Linear baseia-se nos seguintes conceitos:
-
-- **Modelo Linear:** O modelo assume que a variável dependente \( y \) pode ser expressa como uma combinação linear das variáveis independentes \( x_1, x_2, \ldots, x_n \), mais um termo de erro:
-
-  \[
-  y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_n x_n + \varepsilon
-  \]
-
-  Onde:
-  - \( \beta_0 \) é o intercepto,
-  - \( \beta_i \) são os coeficientes (pesos) associados a cada variável,
-  - \( \varepsilon \) representa o erro/resíduo.
-
-- **Ajuste dos Coeficientes:** O algoritmo busca encontrar os valores dos coeficientes \( \beta \) que minimizam a soma dos quadrados dos erros (diferença entre os valores observados e os previstos), método conhecido como **mínimos quadrados ordinários (OLS - Ordinary Least Squares)**.
-
-- **Predição:** Uma vez determinados os coeficientes, o modelo pode prever o valor de \( y \) para novos valores das variáveis independentes.
-
-- **Avaliação do Modelo:** A qualidade do ajuste é avaliada através de métricas como o coeficiente de determinação \( R^2 \), erro médio quadrático (MSE) e erro absoluto médio (MAE).
-
-A Regressão Linear é bastante útil para entender a relação entre variáveis e para fazer previsões quando essa relação é aproximadamente linear.
-
-
 
 
 
@@ -326,21 +340,8 @@ A Regressão Linear é bastante útil para entender a relação entre variáveis
 - O tradeoff entre bias e variância é fundamental para um bom modelo (bias-variance tradeoff).
 - Princípio de Ockham's Razor: escolher o modelo mais simples que explica bem os dados.
 
-## 5. Árvores de Decisão (Decision Trees)
 
-- Estrutura que representa uma função mapeando atributos de entrada para uma saída.
-- Cada nó interno faz um teste sobre um atributo; as folhas definem a saída.
-- Algoritmo ID3: constrói árvore escolhendo atributos que maximizam o ganho de informação.
-- Ganho de informação é baseado na entropia, que mede a incerteza dos dados.
-- Entropia baixa = menos incerteza; Entropia alta = mais incerteza.
 
-## 6. Regressão Linear
-
-- Modelo simples que representa uma relação linear entre input x e output y.
-- Função linear: y = w1*x + w0, onde w são pesos que se ajustam para minimizar erro (loss function).
-- Minimização feita usando soma dos erros quadráticos (squared error).
-- Fórmulas fechadas para encontrar os melhores pesos.
-- Pode ser estendido para múltiplas variáveis.
 
 ## 7. Support Vector Machines (SVM)
 
