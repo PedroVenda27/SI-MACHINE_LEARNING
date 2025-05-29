@@ -270,7 +270,9 @@ Estas equações tem uma solução única:
 
 Desta forma, a regressão linear cria um modelo onde cada coeficiente representa o peso atribuído a uma variável explicativa, e a combinação linear desses pesos com os valores dos atributos gera a previsão do valor da variável dependente.
 
-O objetivo final é encontrar os coeficientes que melhor ajustem os dados observados, permitindo prever novos exemplos de forma eficiente e precisa, minimizando o erro entre as predições e os valores reais.
+O objetivo final é encontrar os coeficientes que melhor ajustem os dados observados, permitindo prever novos exemplos de forma eficiente e precisa, minimizando o erro entre as predições e os valores reais. 
+Aqui temos um exemplo:
+![image](https://github.com/user-attachments/assets/f705e151-429f-4d09-9fe5-d43da34e54d1)
 
 ### 2.4.4 Código
 
