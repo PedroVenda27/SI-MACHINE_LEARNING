@@ -1,14 +1,10 @@
-# SI-MACHINE_LEARNING
-
 # 1. INTRODUÇÃO
 
 Nos últimos anos, o **Machine Learning** (Aprendizagem Automática) tem se destacado como uma das áreas mais promissoras da inteligência artificial, impulsionando avanços em diversas áreas como saúde, finanças, reconhecimento de padrões e automação. 
 
-Esta Trata-se de um campo que permite aos sistemas aprenderem automaticamente a partir de dados, identificando padrões e tomando decisões sem serem explicitamente programados para cada tarefa específica.
+Machine Learning consiste numa área que permite que sistemas computacionais aprendam e se adaptem automaticamente, extraindo conhecimento a partir de grandes volumes de dados. Diferentemente dos métodos tradicionais, onde todas as regras e exceções são programadas manualmente, os algoritmos de aprendizagem automática conseguem identificar padrões subjacentes, fazer previsões e tomar decisões sem serem explicitamente instruídos para cada cenário específico.
 
-Neste relatório, exploraremos os conceitos fundamentais de Machine Learning por meio do estudo de dois conjuntos de dados clássicos: o dataset **diabetes** e o dataset **iris**. 
-
-Esses datasets são amplamente utilizados para ilustrar os princípios básicos de classificação, análise de dados e modelagem preditiva.
+Neste relatório, exploraremos os conceitos fundamentais de Machine Learning por meio do estudo de dois conjuntos de dados clássicos: o dataset **diabetes** e o dataset **iris** . 
 
 Serão abordados tópicos essenciais como:
 
@@ -19,10 +15,9 @@ Serão abordados tópicos essenciais como:
 
 Utilizando os datasets diabetes e iris, será possível entender a aplicação prática dos algoritmos, desde a preparação dos dados até a interpretação dos resultados, evidenciando a importância da escolha correta do modelo e dos parâmetros para alcançar alta precisão preditiva.
 
-Além disso, discutiremos os desafios comuns em Machine Learning, como o balanceamento entre viés e variância, overfitting e underfitting, e estratégias para otimizar o desempenho dos modelos.
+Além disso, discutiremos os desafios comuns em Machine Learning, como o balanceamento entre bias e variância, overfitting e underfitting, e estratégias para otimizar o desempenho dos modelos.
 
 Este relatório visa proporcionar uma visão geral clara e aplicada de Machine Learning, destacando sua relevância e potencial em resolver problemas complexos baseados em dados reais.
-
 
 ## 1.1 Conceitos Base
 
@@ -33,7 +28,7 @@ Em vez de seguir instruções rígidas definidas por um programador, um sistema 
 
 Um agente inteligente pode ser considerado em aprendizagem quando melhora seu comportamento ao observar e interpretar o mundo ao seu redor. No caso dos computadores, essa aprendizagem ocorre através da análise de grandes volumes de dados, a partir dos quais o sistema cria uma “hipótese” sobre como o mundo funciona.
 
-### 1.1.1 Por que deixar a máquina aprender em vez de programá-la diretamente?
+### 1.1.2 Por que deixar a máquina aprender em vez de programá-la diretamente?
 
 Existem duas razões principais para deixar-mos a maquina aprender por si propria:
 
@@ -65,12 +60,150 @@ Dentro ainda do Conceito de Machine Learning Existem ainda três principais abor
 
 Cada tipo de aprendizagem serve a propósitos distintos e pode ser usado isoladamente ou em conjunto para resolver problemas complexos.
 
-## 3. Aprendizagem Supervisionada Formal
 
-- Dados de treino: pares (x_i, y_i) gerados por função desconhecida y = f(x).
-- Objetivo: descobrir função h (hipótese) que aproxime f.
-- h faz parte do espaço de hipóteses H (conjunto de possíveis modelos).
-- Avaliação do modelo considera desempenho em dados não vistos (conjunto de teste), para verificar a capacidade de generalização.
+### 1.1.4 Aprendizagem Supervisionada - Detalhada
+
+Neste trabalho, vamos incidir apenas em algoritmos e modelos baseados em aprendizagem supervisionada (Decision Trees, Regressão Linear, SVM, Random Forests). Esta tarefa pode ser definida da seguinte forma:
+
+Dado um conjunto de treino com **N** pares input-output  
+**(X<sub>1</sub>, Y<sub>1</sub>), (X<sub>2</sub>, Y<sub>2</sub>), ..., (X<sub>N</sub>, Y<sub>N</sub>)**  
+onde cada par foi gerado por uma função desconhecida **y = f(x)**,  
+o objetivo é descobrir **uma função h** que aproxime a verdadeira função **f**.
+
+Essa **função h** é chamada **hipótese** e pertence a um espaço de hipóteses **H**, que é o conjunto de todas as possíveis funções candidatas.
+
+Também designamos **h** como o **modelo** dos dados, obtido a partir da classe de modelos **H**.
+
+O output **Y<sub>i</sub>** é chamado de **ground truth**, pois representa a resposta verdadeira que queremos que o modelo aprenda a prever.
+
+
+---
+
+
+# 2 PROJETO DE ESTUDO / PROBLEMA
+
+## 2.1 Objetivo trabalho em que consiste?
+
+Passando agora objetivo principal deste projeto este consite na aplicaçao de técnicas de Machine Learning para analisar os datasets iris e diabetes, treinando modelos capazes de identificar padrões relevantes e avaliando a performance desses modelos.
+
+Para a realização deste trabalho, serão seguidas três fases principais:
+
+- 1. Preparação e Compreensão dos Dados  
+Nesta fase, será feita a descrição dos datasets utilizados — **diabetes** e **iris** — explicando a sua composição e importância para o estudo.
+
+- 2. Compreensão e Aplicação dos Algoritmos  
+Serão apresentados os algoritmos de aprendizagem supervisionada escolhidos, nomeadamente as **Decision Trees** e as **SVM**, incluindo a explicação do seu funcionamento e a aplicação prática aos datasets.
+
+- 3. Avaliação e Interpretação dos Resultados  
+Por fim, serão analisados o desempenho dos modelos, considerando o tempo de processamento, utilização de memória e qualidade dos resultados, seguidos das conclusões do estudo.
+
+
+
+## 2.2 Decision Trees (ID3 Algorithm)
+
+O algoritmo **ID3** (Iterative Dichotomiser 3) é uma técnica popular de aprendizagem supervisionada utilizada para construir árvores de decisão a partir de conjuntos de dados. Este algoritmo é amplamente aplicado em problemas de classificação, onde o objetivo é predizer a classe ou categoria de um dado exemplo com base em atributos observados.
+
+O ID3 baseia-se no conceito de entropia e ganho de informação para decidir qual atributo deve ser usado para dividir os dados em cada passo, criando uma árvore que tenta representar da melhor forma possível as regras de decisão presentes no conjunto de dados.
+
+### 2.2.1 Funcionamento do Algoritmo
+
+O funcionamento do algoritmo ID3 assenta na construção recursiva de uma árvore de decisão, selecionando em cada passo o atributo que melhor separa os dados segundo uma métrica estatística chamada **ganho de informação**. O processo é o seguinte:
+
+- **Cálculo da Entropia:** Para cada conjunto de exemplos, calcula-se a entropia, que mede a impureza ou incerteza dos dados em relação às classes.
+
+- **Cálculo do Ganho de Informação:** Para cada atributo disponível, calcula-se o ganho de informação, que representa a redução da entropia ao segmentar os dados por esse atributo. O atributo com maior ganho de informação é escolhido para fazer a divisão naquele nó da árvore.
+
+- **Divisão dos Dados:** O conjunto de dados é dividido em subconjuntos com base nos valores do atributo selecionado.
+
+- **Recursão:** O algoritmo é aplicado recursivamente a cada subconjunto, até que um dos seguintes critérios seja atingido:
+  - Todos os exemplos no subconjunto pertencem à mesma classe (nó folha).
+  - Não há mais atributos para dividir, sendo então atribuído o valor da classe mais frequente.
+  - O subconjunto está vazio, atribuindo-se o valor da classe majoritária do nó pai.
+
+Desta forma, o ID3 cria uma árvore onde cada nó interno corresponde a um teste num atributo, cada ramo corresponde a um resultado possível desse teste, e cada folha representa uma classe final.
+
+O objetivo final é gerar uma árvore de decisão que generalize bem os dados, permitindo classificar novos exemplos de forma eficiente e precisa.
+
+## 2.3 Algoritmo SVM (Support Vector Machine)
+
+O algoritmo **Support Vector Machine (SVM)** é uma técnica poderosa de aprendizagem supervisionada utilizada principalmente para problemas de classificação e regressão. O seu principal objetivo é encontrar o hiperplano que melhor separa as classes num espaço de características, maximizando a margem entre os dados de diferentes classes.
+
+O SVM é especialmente eficaz em espaços de alta dimensão e pode ser adaptado para problemas não lineares através do uso de funções kernel, que transformam os dados para um espaço onde a separação linear seja possível.
+
+### 2.3.1 Funcionamento do Algoritmo
+
+O funcionamento do SVM baseia-se nos seguintes conceitos:
+
+- **Hiperplano Ótimo:** O SVM procura um hiperplano que divide os dados em classes diferentes, maximizando a distância (margem) entre o hiperplano e os pontos de dados mais próximos de cada classe, conhecidos como vetores de suporte.
+
+- **Vetores de Suporte:** São os exemplos do conjunto de treino que ficam mais próximos do hiperplano e que influenciam diretamente a posição e orientação do mesmo.
+
+- **Margem Máxima:** O objetivo é encontrar o hiperplano que maximiza a margem entre as classes, pois isso tende a melhorar a generalização do modelo.
+
+- **Kernels:** Quando os dados não são linearmente separáveis no espaço original, o SVM utiliza funções kernel (como o kernel linear, polinomial, radial basis function - RBF) para mapear os dados para um espaço dimensional superior onde a separação linear é possível.
+
+- **Restrições e Otimização:** O problema de encontrar o hiperplano ótimo é formulado como um problema de otimização convexa, que pode ser resolvido eficientemente por métodos matemáticos como o método dos multiplicadores de Lagrange.
+
+Desta forma, o SVM constrói um modelo robusto para classificar novos dados, mesmo quando as classes não são linearmente separáveis no espaço original, apresentando bom desempenho em muitos cenários práticos.
+
+
+
+## 2.4 Algoritmo de Regressão Linear (EXTRA)
+
+A **Regressão Linear** é uma técnica estatística e de aprendizagem supervisionada usada para modelar a relação entre uma variável dependente contínua e uma ou mais variáveis independentes (features). O objetivo é encontrar uma função linear que melhor ajuste os dados e permita prever valores futuros.
+
+É um dos algoritmos mais simples e amplamente utilizados para problemas de regressão.
+
+### 2.4.1 Funcionamento do Algoritmo
+
+O funcionamento da Regressão Linear baseia-se nos seguintes conceitos:
+
+- **Modelo Linear:** O modelo assume que a variável dependente \( y \) pode ser expressa como uma combinação linear das variáveis independentes \( x_1, x_2, \ldots, x_n \), mais um termo de erro:
+
+  \[
+  y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_n x_n + \varepsilon
+  \]
+
+  Onde:
+  - \( \beta_0 \) é o intercepto,
+  - \( \beta_i \) são os coeficientes (pesos) associados a cada variável,
+  - \( \varepsilon \) representa o erro/resíduo.
+
+- **Ajuste dos Coeficientes:** O algoritmo busca encontrar os valores dos coeficientes \( \beta \) que minimizam a soma dos quadrados dos erros (diferença entre os valores observados e os previstos), método conhecido como **mínimos quadrados ordinários (OLS - Ordinary Least Squares)**.
+
+- **Predição:** Uma vez determinados os coeficientes, o modelo pode prever o valor de \( y \) para novos valores das variáveis independentes.
+
+- **Avaliação do Modelo:** A qualidade do ajuste é avaliada através de métricas como o coeficiente de determinação \( R^2 \), erro médio quadrático (MSE) e erro absoluto médio (MAE).
+
+A Regressão Linear é bastante útil para entender a relação entre variáveis e para fazer previsões quando essa relação é aproximadamente linear.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## 4. Conceitos Importantes: Bias e Variância
 
