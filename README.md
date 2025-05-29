@@ -73,6 +73,22 @@ Também designamos `h` como o `modelo` dos dados, obtido a partir da classe de m
 
 O output **Y<sub>i</sub>** é chamado de `ground truth`, pois representa a resposta verdadeira que queremos que o modelo aprenda a prever.
 
+### 1.1.5 Conceitos Importantes: Bias e Variância
+
+tendo em conta isto e antes de avançar-mos para o Projeto em si é ainda necessario perceber alguns conceitos chaves como:
+
+**Bias** é a tendência de um modelo se desviar de um valor esperado quando exposto a diferentes conjuntos de treino.  O bias normalmente resulta de restrições impostas pelo espaço de possíveis modelos.  
+
+Por exemplo, o espaço de hipóteses das funções lineares impõe um bias aos modelos na medida em que o próprio modelo apenas pode ser constituído por uma linha reta. Caso existam padrões nos dados não capturados por uma linha reta, o modelo não será capaz de os representar e aprender.  
+
+Chamamos de **underfitting** à incapacidade do modelo de encontrar os devidos padrões nos dados.
+
+**Variância** consiste na quantidade de mudanças nos dados devido a flutuações nos dados de treino.  
+
+Chamamos de **overfitting** à excessiva capacidade de adaptação do modelo a um conjunto de dados em particular no qual foi treinado.
+
+
+
 
 ---
 
@@ -307,12 +323,15 @@ onde:
   <li><code>y<sub>i</sub> ∈ {-1, +1}</code> é a classe do ponto <b>x<sub>i</sub></b>.</li>
 </ul>
 
-O objetivo é minimizar \(\|\mathbf{w}\|^2\) sujeito a estas restrições, o que equivale a maximizar a margem entre as classes.
+O objetivo é minimizar |<b>w</b>|<sup>2</sup> sujeito a estas restrições, o que equivale a maximizar a margem entre as classes.
 
 ### 2.5.3 Margem e Vetores de Suporte
 
 - **Margem**: Distância mínima entre o hiperplano e os dados mais próximos (os vetores de suporte).
 - **Vetores de Suporte**: Pontos do conjunto de treino que estão mais próximos do hiperplano e que determinam sua posição.
+
+![image](https://github.com/user-attachments/assets/f95f8a5b-38af-4972-bf52-b65fa495e052)
+
 
 Maximizar a margem ajuda a garantir melhor generalização do modelo para novos dados.
 
@@ -365,19 +384,6 @@ O **kernel trick** permite calcular produtos escalares nesse espaço elevado sem
 - **Variância:** sensibilidade do modelo a variações nos dados de treino, que pode causar overfitting.
 - O tradeoff entre bias e variância é fundamental para um bom modelo (bias-variance tradeoff).
 - Princípio de Ockham's Razor: escolher o modelo mais simples que explica bem os dados.
-
-
-
-
-## 7. Support Vector Machines (SVM)
-
-- Algoritmo poderoso para classificação e regressão.
-- Busca a linha ou hiperplano que separa classes com a maior margem possível.
-- Uso de kernels para mapear dados para espaços de maior dimensão e permitir separação não linear.
-- Parâmetro C controla rigidez da margem.
-- Vantagens: compacto, rápido na predição, bom para dados de alta dimensão.
-- Desvantagens: treino pode ser lento em datasets muito grandes, sensível à escolha de C, modelo pouco interpretável.
-
 
 
 ## 11. Métricas de Avaliação para Classificadores
