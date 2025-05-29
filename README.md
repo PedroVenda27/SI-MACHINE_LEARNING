@@ -97,19 +97,66 @@ Serão apresentados os algoritmos de aprendizagem supervisionada escolhidos, nom
 - 3. Avaliação e Interpretação dos Resultados  
 Por fim, serão analisados o desempenho dos modelos, considerando o tempo de processamento, utilização de memória e qualidade dos resultados, seguidos das conclusões do estudo.
 
+## 2.2 Descriçao dos Datasets (DIABETES E IRIS
 
+### 2.2.1 Dataset Diabetes
 
-## 2.2 Decision Trees (ID3 Algorithm)
+O **Dataset Diabetes** é um conjunto de dados amplamente utilizado para tarefas de aprendizagem supervisionada, especialmente para problemas de classificação binária, como a previsão de diabetes em pacientes. Este dataset contém informações clínicas e biométricas de pacientes que podem ser usadas para prever a ocorrência de diabetes.
+
+#### 2.2.1.1 Características principais:
+
+- **Número de instâncias:** 768
+- **Número de atributos:** 8 variáveis de entrada (features) + 1 variável alvo (target)
+- **Atributos de entrada:** incluem dados clínicos como:
+  - Número de gestações
+  - Índice de massa corporal (IMC)
+  - Pressão arterial diastólica
+  - Nível de insulina no sangue
+  - Idade do paciente
+  - Entre outros indicadores fisiológicos relevantes
+- **Variável alvo:** Indica se o paciente tem diabetes (1) ou não (0)
+- **Origem:** Base de dados do National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)
+
+#### 2.2.1.2 Aplicação:
+
+O dataset é utilizado para treinar modelos que ajudem a prever o diagnóstico de diabetes com base nas características do paciente, sendo uma referência clássica para avaliação de algoritmos de classificação em Machine Learning.
+
+---
+
+### 2.2.2 Dataset Irís
+
+O **Dataset Iris** é um dos datasets mais famosos para tarefas de classificação multiclasse, utilizado para identificar espécies de flores da planta **Iris** com base em medidas morfológicas.
+
+#### 2.2.2.1 Características principais:
+
+- **Número de instâncias:** 150
+- **Número de atributos:** 4 variáveis de entrada + 1 variável alvo
+- **Atributos de entrada:**
+  - Comprimento da sépala (em cm)
+  - Largura da sépala (em cm)
+  - Comprimento da pétala (em cm)
+  - Largura da pétala (em cm)
+- **Variável alvo:** Espécie da flor, com três classes possíveis:
+  - *Iris setosa*
+  - *Iris versicolor*
+  - *Iris virginica*
+- **Origem:** Coletado por Ronald Fisher em 1936 para estudos estatísticos
+
+#### 2.2.2.2 Aplicação:
+
+Este dataset é utilizado para demonstrar e testar algoritmos de classificação, destacando-se pela simplicidade e clareza dos dados, sendo ideal para exemplos educacionais e provas de conceito em aprendizagem supervisionada.
+
+## 2.3 Decision Trees (ID3 Algorithm)
 
 O algoritmo **ID3** (Iterative Dichotomiser 3) é uma técnica popular de aprendizagem supervisionada utilizada para construir árvores de decisão a partir de conjuntos de dados. Este algoritmo é amplamente aplicado em problemas de classificação, onde o objetivo é predizer a classe ou categoria de um dado exemplo com base em atributos observados.
 
 Este algoritmo baseia-se no conceitos de Entropia e Ganho de informação para decidir qual atributo deve ser usado para dividir os dados em cada passo, criando uma árvore que tenta representar da melhor forma possível as regras de decisão presentes no conjunto de dados.
 
-### 2.2.1 Funcionamento do Algoritmo
+### 2.3.1 Funcionamento do Algoritmo
 
 O funcionamento do algoritmo ID3 assenta na construção recursiva de uma árvore de decisão, selecionando em cada passo o atributo que melhor separa os dados segundo uma métrica estatística chamada **ganho de informação**. O processo é o seguinte:
 
-### 2.2.2 Cálculo da Entropia
+### 2.3.2 Cálculo da Entropia
 
 O conceito de Entropia consiste numa medida de incerteza relativamente a uma variável aleatória: quanto mais informação, menos entropia.
 
@@ -130,7 +177,7 @@ Exemplo 2: <p><i>H</i>(viciada) = - (0.99 log<sub>2</sub> 0.99 + 0.01 log<sub>2<
 
 Para cada conjunto de exemplos, calcula-se a entropia, que mede a impureza ou incerteza dos dados em relação às classes.
 
-### 2.2.3 Cálculo do Ganho de Informação
+### 2.3.3 Cálculo do Ganho de Informação
 
 Para cada atributo disponível, calcula-se o ganho de informação, que representa a redução da entropia ao segmentar os dados por esse atributo. O atributo com maior ganho de informação é escolhido para fazer a divisão naquele nó da árvore.
 
@@ -147,7 +194,7 @@ O ganho de informação é então calculado da seguinte forma para um atributo
 
 **Ganho(A) = B(p / (p + n)) - Resto(A)**
 
-### 2.2.4 Divisão dos Dados Criaçao da Arvore
+### 2.3.4 Divisão dos Dados Criaçao da Arvore
 
 Passamos entao a divisão dos dados estes são divididos em subconjuntos com base nos valores do atributo selecionado.
 
@@ -171,13 +218,13 @@ Desta forma, o ID3 cria uma árvore onde cada nó interno corresponde a um teste
 O objetivo final é gerar uma árvore de decisão que generalize bem os dados, permitindo classificar novos exemplos de forma eficiente e precisa.
 
 
-### 2.2.5 Código
+### 2.3.5 Código
 
 
 
 
 
-### 2.2.6 Exemplo Prático (VIDEO)
+### 2.3.6 Exemplo Prático (VIDEO)
 
 De forma A entender tudo isto de uma Maneira mais vizual deixo aqui um video de toda a explicação do Funcionamento do Algoritmo ID3
 [VIDEO](https://www.youtube.com/watch?v=aLsReomQ7AA)
