@@ -144,7 +144,7 @@ Este dataset é utilizado para demonstrar e testar algoritmos de classificação
 
 ---
 
-## 2.3 Decision Trees (ID3 Algorithm)
+## 2.3 ID3 Algorithm - Decision Trees - (Classificação)
 
 O algoritmo **ID3** (Iterative Dichotomiser 3) é uma técnica popular de aprendizagem supervisionada utilizada para construir árvores de decisão a partir de conjuntos de dados. Este algoritmo é amplamente aplicado em problemas de classificação, onde o objetivo é predizer a classe ou categoria de um dado exemplo com base em atributos observados.
 
@@ -227,8 +227,9 @@ O objetivo final é gerar uma árvore de decisão que generalize bem os dados, p
 De forma A entender tudo isto de uma Maneira mais vizual deixo aqui um video de toda a explicação do Funcionamento do Algoritmo ID3
 [VIDEO](https://www.youtube.com/watch?v=aLsReomQ7AA)
 
+---
 
-## 2.4 Algoritmo de Regressão Linear 
+## 2.4 Linear Regression Alghorithm - (Regressão)
 
 O algoritmo **Regressão Linear** é uma técnica estatística e de aprendizagem supervisionada usada para modelar a relação entre uma variável dependente contínua e uma ou mais variáveis independentes (features). O objetivo é encontrar uma função linear que melhor ajuste os dados e permita prever valores futuros. Este é um dos algoritmos mais simples e amplamente utilizados para problemas de regressão.
 
@@ -279,37 +280,58 @@ Aqui temos um exemplo:
 De forma a entender tudo isto de uma maneira mais visual, deixo aqui um vídeo que explica detalhadamente o funcionamento do algoritmo de Regressão Linear:
 [VIDEO](https://www.youtube.com/watch?v=CtsRRUddV2s)
 
+---
+
+## 2.5 Support Vector Machines SVM Algorithm - (Classificação ou Regressão)
+
+O algoritmo **Support Vector Machines (SVM)** é uma técnica poderosa de aprendizagem supervisionada, utilizada tanto para problemas de classificação como de regressão. O objetivo principal da SVM é encontrar uma fronteira (hiperplano) que melhor separe os dados em diferentes classes, maximizando a margem entre as classes, ou que modele a relação entre variáveis para regressão.
+
+### 2.5.1 Funcionamento do Algoritmo
+
+O funcionamento das SVMs baseia-se na construção de um hiperplano ótimo que divide o espaço dos dados de forma a maximizar a margem entre as diferentes classes. A margem corresponde à distância entre o hiperplano e os pontos mais próximos de cada classe, chamados de **vetores de suporte**. 
+
+No caso de dados linearmente separáveis, a SVM encontra uma linha (em 2D) ou um hiperplano (em dimensões superiores) que separa as classes com a maior margem possível. Para dados não linearmente separáveis, a SVM pode usar **kernels** para projetar os dados num espaço dimensional superior onde a separação linear seja possível.
+
+### 2.5.2 Modelo SVM
+
+O modelo SVM pode ser formalizado como:
+
+<Encontrar `w` e `b` tais que
+
+**<p>y<sub>i</sub> ( <b>w</b> &middot; x<sub>i</sub> + b ) &ge; 1 &nbsp;&nbsp; para todo i = 1, ..., N</p>**
+onde:
+
+<ul>
+  <li><b>w</b> é o vetor normal ao hiperplano,</li>
+  <li><b>b</b> é o termo de bias (intercepto),</li>
+  <li><code>y<sub>i</sub> ∈ {-1, +1}</code> é a classe do ponto <b>x<sub>i</sub></b>.</li>
+</ul>
+
+O objetivo é minimizar \(\|\mathbf{w}\|^2\) sujeito a estas restrições, o que equivale a maximizar a margem entre as classes.
+
+### 2.5.3 Margem e Vetores de Suporte
+
+- **Margem**: Distância mínima entre o hiperplano e os dados mais próximos (os vetores de suporte).
+- **Vetores de Suporte**: Pontos do conjunto de treino que estão mais próximos do hiperplano e que determinam sua posição.
+
+Maximizar a margem ajuda a garantir melhor generalização do modelo para novos dados.
+
+### 2.5.4 Kernel Trick
+
+Quando os dados não são linearmente separáveis no espaço original, a SVM pode usar funções kernel para transformar os dados para um espaço de maior dimensão, onde se torna possível encontrar um hiperplano linear. Exemplos de kernels comuns:
+
+- Linear
+- Polinomial
+- RBF (Radial Basis Function)
+- Sigmoidal
+
+O **kernel trick** permite calcular produtos escalares nesse espaço elevado sem computar explicitamente a transformação.
+
+### 2.5.5 Código
+
+### 2.5.6 Exemplo Prático (VIDEO)
 
 
-
-
-
-
-
-
-
-
-## 2.3 Algoritmo SVM (Support Vector Machine) (EXTRA)
-
-O algoritmo **Support Vector Machine (SVM)** é uma técnica poderosa de aprendizagem supervisionada utilizada principalmente para problemas de classificação e regressão. O seu principal objetivo é encontrar o hiperplano que melhor separa as classes num espaço de características, maximizando a margem entre os dados de diferentes classes.
-
-O SVM é especialmente eficaz em espaços de alta dimensão e pode ser adaptado para problemas não lineares através do uso de funções kernel, que transformam os dados para um espaço onde a separação linear seja possível.
-
-### 2.3.1 Funcionamento do Algoritmo
-
-O funcionamento do SVM baseia-se nos seguintes conceitos:
-
-- **Hiperplano Ótimo:** O SVM procura um hiperplano que divide os dados em classes diferentes, maximizando a distância (margem) entre o hiperplano e os pontos de dados mais próximos de cada classe, conhecidos como vetores de suporte.
-
-- **Vetores de Suporte:** São os exemplos do conjunto de treino que ficam mais próximos do hiperplano e que influenciam diretamente a posição e orientação do mesmo.
-
-- **Margem Máxima:** O objetivo é encontrar o hiperplano que maximiza a margem entre as classes, pois isso tende a melhorar a generalização do modelo.
-
-- **Kernels:** Quando os dados não são linearmente separáveis no espaço original, o SVM utiliza funções kernel (como o kernel linear, polinomial, radial basis function - RBF) para mapear os dados para um espaço dimensional superior onde a separação linear é possível.
-
-- **Restrições e Otimização:** O problema de encontrar o hiperplano ótimo é formulado como um problema de otimização convexa, que pode ser resolvido eficientemente por métodos matemáticos como o método dos multiplicadores de Lagrange.
-
-Desta forma, o SVM constrói um modelo robusto para classificar novos dados, mesmo quando as classes não são linearmente separáveis no espaço original, apresentando bom desempenho em muitos cenários práticos.
 
 
 
@@ -374,255 +396,3 @@ Desta forma, o SVM constrói um modelo robusto para classificar novos dados, mes
 
 ---
 
-# Conclusão
-
-Este conjunto de slides apresenta uma introdução sólida e prática aos conceitos fundamentais de Machine Learning, abordando os tipos de aprendizagem, modelos clássicos como árvores de decisão, regressão linear, SVM e Random Forests, bem como métodos para redução de dimensionalidade (PCA) e clustering (k-means). O conteúdo também enfatiza a importância do equilíbrio bias-variância e apresenta as principais métricas para avaliação de modelos de classificação e regressão.
-
----
-
-Se desejar, posso também ajudar a criar exemplos práticos em código Python para estes conceitos.
-
-Uma moeda equilibrada com 2 faces tem 1 de entropia (2 resultados igaulmente Possiveis)
-
-Por outro lado se uma moeda está viciada e 99% das vezes que a atiramos, recebemos
-”cara”, então a entropia será muito menor que 1, uma vez que a incerteza é também ela muito menor.
-
-Podemos Defenir Entropia Como:
-
-**H(V) = - &sum;<sub>k</sub> P(v<sub>k</sub>) log<sub>2</sub> P(v<sub>k</sub>)**
-
-Exemplo 1: <p><i>H</i>(equilibrada) = - (0.5 log<sub>2</sub> 0.5 + 0.5 log<sub>2</sub> 0.5) = 1</p>
-Exemplo 2: <p><i>H</i>(viciada) = - (0.99 log<sub>2</sub> 0.99 + 0.01 log<sub>2</sub> 0.01) = 0.08</p>
-
-Para cada conjunto de exemplos, calcula-se a entropia, que mede a impureza ou incerteza dos dados em relação às classes.
-
-### 2.3.3 Cálculo do Ganho de Informação
-
-Para cada atributo disponível, calcula-se o ganho de informação, que representa a redução da entropia ao segmentar os dados por esse atributo. O atributo com maior ganho de informação é escolhido para fazer a divisão naquele nó da árvore.
-
-A ideia é escolher um atributo **A** de tal forma que a entropia do conjunto de dados desça. Medimos esta redução calculando a entropia que resta depois de efectuado o teste ao atributo.
-
-Um atributo **A** com *d* valores diferentes divide o conjunto de treino **E** em subconjuntos **(E<sub>1</sub>,...,E<sub>d</sub>).** Cada subconjunto **(E<sub>k</sub>)**  tem **(P<sub>k</sub>)**  exemplos positivos e **(N<sub>k</sub>)**  exemplos negativos, pelo que precisaremos de B**(<sup>p<sub>k</sub></sup>/<sub>p<sub>k</sub> + n<sub>k</sub></sub>)** bits de informação para responder à questão. 
-
-Um exemplo escolhido aleatoriamente tem probabilidade  
-**(p<sub>k</sub> + n<sub>k</sub>)/(p + n)** de pertencer a **(E<sub>k</sub>)**, pelo que a restante entropia depois de escolhido o atributo pode ser calculada da seguinte forma:
-
-**Resto(A) = ∑<sub>k=1</sub><sup>d</sup> ((p<sub>k</sub> + n<sub>k</sub>) / (p + n)) × B(p<sub>k</sub> / (p<sub>k</sub> + n<sub>k</sub>))**
-
-O ganho de informação é então calculado da seguinte forma para um atributo
-
-**Ganho(A) = B(p / (p + n)) - Resto(A)**
-
-### 2.3.4 Divisão dos Dados Criaçao da Arvore
-
-Passamos entao a divisão dos dados estes são divididos em subconjuntos com base nos valores do atributo selecionado.
-
-Neste caso, podemos ver que o atributo mais importante dos dois é o `Patrons`.
-
-Com `Type`, mantemos exactamente a mesma distribui¸ção após a separaçãao
-dos exemplos pelos valores de atributos.
-Com `Patrons`, conseguimos logo dar uma resposta relativamente a bastantes exemplos, ficando apenas por resolver o caso em que o valor de Patrons é `Full`
-
-![image](https://github.com/user-attachments/assets/3a619240-0ee4-44c6-ab4a-c229ea2247fd)
-
-Após escolhermos o atributo mais importante, existem quatro casos possíveis:
-
-- Se todos os exemplos que restam são todos positivos ou negativos, então já podemos dar uma resposta: Sim ou Não. Por exemplo, *Patrons = None*.
-- Se existem alguns exemplos positivos ou negativos então voltamos a escolher o melhor atributo para os separar. Por exemplo em *Patrons = Full* é escolhido o atributo *Hungry*.
-- Se já não existem exemplos, então quer dizer que ainda não foi visto nenhum caso com aquela combinação de atributos. Assim sendo, retornamos o output mais comum do conjunto de exemplos que foi usado na construção do nó pai.
-- Se já não existem atributos para usar, mas ainda temos exemplos positivos e negativos, então quer dizer que estes exemplos têm a mesma descrição, mas diferentes classificações. Neste caso, retornamos o valor de output mais comum neste conjunto de exemplos.
-
-Desta forma, o ID3 cria uma árvore onde cada nó interno corresponde a um teste num atributo, cada ramo corresponde a um resultado possível desse teste, e cada folha representa uma classe final.
-
-O objetivo final é gerar uma árvore de decisão que generalize bem os dados, permitindo classificar novos exemplos de forma eficiente e precisa.
-
-
-### 2.3.5 Código
-
-
-
-
-
-### 2.3.6 Exemplo Prático (VIDEO)
-
-De forma A entender tudo isto de uma Maneira mais vizual deixo aqui um video de toda a explicação do Funcionamento do Algoritmo ID3
-[VIDEO](https://www.youtube.com/watch?v=aLsReomQ7AA)
-
----
-
-
-
-
-## 2.4 Regressão (Linear Regression Algorithm)
-
-O algoritmo **Regressão Linear** é uma técnica estatística e de aprendizagem supervisionada usada para modelar a relação entre uma variável dependente contínua e uma ou mais variáveis independentes (features). O objetivo é encontrar uma função linear que melhor ajuste os dados e permita prever valores futuros. Este é um dos algoritmos mais simples e amplamente utilizados para problemas de regressão.
-
-### 2.4.1 Funcionamento do Algoritmo
-
-O funcionamento da regressão linear baseia-se na modelação da relação entre uma variável dependente e uma ou mais variáveis independentes, ajustando uma função linear que minimiza a soma dos erros quadráticos entre os valores previstos e os valores observados, de forma a capturar a tendência dos dados para realizar previsões.O processo é o seguinte
-
-### 2.4.2 Modelo Linear
-
-Uma função linear univariada com input `x` e output `y` tem a forma `y = w<sub>1</sub>x + w<sub>0</sub>` onde `w<sub>0</sub>` e `w<sub>1</sub>` sâo coeficientes que temos de determinar.
-Estes coeficientes funcionam como pesos: o valor de `y` varia consoante opeso relativo de um termo ou outro.
-Vamos assumir que `w`e o vector `⟨w<sub>0</sub>,w<sub>1</sub>⟩` e a função linear com esses pesos é:
-
-`h<sub>w</sub>(x) = w<sub>1</sub> x + w<sub>0</sub>`
-
-O objectivo passa por encontrar a função `h<sub>w</sub>(X)` que melhor se ajusta aos dados. A esta tarefa chamamos regressao linear
-
-### 2.4.3 Ajuste dos Coeficientes
-
-O algoritmo busca encontrar os valores para os pesos `⟨w<sub>0</sub>,w<sub>1</sub>⟩` que minimizem um loss function 
-
-Uma loss function clássica em casos de regressão linear é a Squared-Error:
-
-`Loss(h<sub>w</sub>) = ∑<sub>j=1</sub><sup>N</sup> (y<sub>j</sub> − (w<sub>1</sub>x<sub>j</sub> + w<sub>0</sub>))²`
-
-O objectivo é minimizar a funçãoo Loss⟨h<sub>w</sub>⟩. A função é minima quando assuas derivadas parciais são zero:
-
-`∂/∂w<sub>0</sub> ∑<sub>j=1</sub><sup>N</sup> (y<sub>j</sub> − (w<sub>1</sub>x<sub>j</sub> + w<sub>0</sub>))² = 0`
-
-`∂/∂w<sub>1</sub> ∑<sub>j=1</sub><sup>N</sup> (y<sub>j</sub> − (w<sub>1</sub>x<sub>j</sub> + w<sub>0</sub>))² = 0`
-
-Estas equações tem uma solução única:
-
-`w<sub>1</sub> = [N ∑ x<sub>j</sub> y<sub>j</sub> − (∑ x<sub>j</sub>) (∑ y<sub>j</sub>)] / [N ∑ x<sub>j</sub><sup>2</sup> − (∑ x<sub>j</sub>)<sup>2</sup>]`
-
-`w<sub>0</sub> = (∑ y<sub>j</sub> − w<sub>1</sub> (∑ x<sub>j</sub>)) / N`
-
-Desta forma, a regressão linear cria um modelo onde cada coeficiente representa o peso atribuído a uma variável explicativa, e a combinação linear desses pesos com os valores dos atributos gera a previsão do valor da variável dependente.
-
-O objetivo final é encontrar os coeficientes que melhor ajustem os dados observados, permitindo prever novos exemplos de forma eficiente e precisa, minimizando o erro entre as predições e os valores reais. 
-Aqui temos um exemplo:
-![image](https://github.com/user-attachments/assets/f705e151-429f-4d09-9fe5-d43da34e54d1)
-
-### 2.4.4 Código
-
-### 2.4.5 Exemplo Prático (VIDEO)
-
-De forma a entender tudo isto de uma maneira mais visual, deixo aqui um vídeo que explica detalhadamente o funcionamento do algoritmo de Regressão Linear:
-[VIDEO](https://www.youtube.com/watch?v=CtsRRUddV2s)
-
-
-
-
-
-
-
-## 2.3 Algoritmo SVM (Support Vector Machine) (EXTRA)
-
-O algoritmo **Support Vector Machine (SVM)** é uma técnica poderosa de aprendizagem supervisionada utilizada principalmente para problemas de classificação e regressão. O seu principal objetivo é encontrar o hiperplano que melhor separa as classes num espaço de características, maximizando a margem entre os dados de diferentes classes.
-
-O SVM é especialmente eficaz em espaços de alta dimensão e pode ser adaptado para problemas não lineares através do uso de funções kernel, que transformam os dados para um espaço onde a separação linear seja possível.
-
-### 2.3.1 Funcionamento do Algoritmo
-
-O funcionamento do SVM baseia-se nos seguintes conceitos:
-
-- **Hiperplano Ótimo:** O SVM procura um hiperplano que divide os dados em classes diferentes, maximizando a distância (margem) entre o hiperplano e os pontos de dados mais próximos de cada classe, conhecidos como vetores de suporte.
-
-- **Vetores de Suporte:** São os exemplos do conjunto de treino que ficam mais próximos do hiperplano e que influenciam diretamente a posição e orientação do mesmo.
-
-- **Margem Máxima:** O objetivo é encontrar o hiperplano que maximiza a margem entre as classes, pois isso tende a melhorar a generalização do modelo.
-
-- **Kernels:** Quando os dados não são linearmente separáveis no espaço original, o SVM utiliza funções kernel (como o kernel linear, polinomial, radial basis function - RBF) para mapear os dados para um espaço dimensional superior onde a separação linear é possível.
-
-- **Restrições e Otimização:** O problema de encontrar o hiperplano ótimo é formulado como um problema de otimização convexa, que pode ser resolvido eficientemente por métodos matemáticos como o método dos multiplicadores de Lagrange.
-
-Desta forma, o SVM constrói um modelo robusto para classificar novos dados, mesmo quando as classes não são linearmente separáveis no espaço original, apresentando bom desempenho em muitos cenários práticos.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## 4. Conceitos Importantes: Bias e Variância
-
-- **Bias:** tendência do modelo de não capturar padrões reais devido à simplicidade do modelo (underfitting).
-- **Variância:** sensibilidade do modelo a variações nos dados de treino, que pode causar overfitting.
-- O tradeoff entre bias e variância é fundamental para um bom modelo (bias-variance tradeoff).
-- Princípio de Ockham's Razor: escolher o modelo mais simples que explica bem os dados.
-
-
-
-
-## 7. Support Vector Machines (SVM)
-
-- Algoritmo poderoso para classificação e regressão.
-- Busca a linha ou hiperplano que separa classes com a maior margem possível.
-- Uso de kernels para mapear dados para espaços de maior dimensão e permitir separação não linear.
-- Parâmetro C controla rigidez da margem.
-- Vantagens: compacto, rápido na predição, bom para dados de alta dimensão.
-- Desvantagens: treino pode ser lento em datasets muito grandes, sensível à escolha de C, modelo pouco interpretável.
-
-## 8. Random Forests
-
-- Método ensemble baseado em bagging de várias decision trees treinadas em subconjuntos aleatórios dos dados.
-- Melhora a generalização diminuindo overfitting.
-- Aplicável para classificação e regressão.
-- Vantagens: treino e predição rápidos, classificações probabilísticas, flexível para evitar underfitting.
-- Desvantagem: perde interpretabilidade das árvores individuais.
-
-## 9. Principal Component Analysis (PCA)
-
-- Algoritmo não supervisionado para redução de dimensionalidade.
-- Identifica os principais eixos de variação nos dados, preservando a maior variância possível.
-- Útil para redução de ruído e extração de características.
-- Pode ser afetado por outliers; versões robustas (RandomizedPCA, SparsePCA) podem ser usadas.
-
-## 10. Clustering: k-means
-
-- Algoritmo não supervisionado para agrupamento de dados em k clusters.
-- Cada cluster é definido pelo centro (média dos pontos).
-- Pontos são atribuídos ao cluster mais próximo.
-- Limitado por:
-  - Necessidade de definir k previamente.
-  - Pode convergir para máximos locais (não ótimo global).
-  - Assume clusters linearmente separáveis.
-- Variantes para grandes datasets e clusters não lineares existem (MiniBatchKMeans, SpectralClustering).
-
-## 11. Métricas de Avaliação para Classificadores
-
-- **Accuracy:** proporção de classificações corretas, mas pode ser enganadora em dados desbalanceados.
-- **Matriz de Confusão:** compara valores previstos vs reais, base para outras métricas.
-- **Precision:** proporção de verdadeiros positivos entre as predições positivas.
-- **Recall:** proporção de verdadeiros positivos entre os casos reais positivos.
-- **F1 Score:** média harmônica entre Precision e Recall, balanceando os dois.
-
-## 12. Métricas de Avaliação para Regressão
-
-- **Mean Squared Error (MSE):** média dos quadrados dos erros, penaliza erros grandes.
-- **Root Mean Squared Error (RMSE):** raiz quadrada do MSE.
-- **Mean Absolute Error (MAE):** média dos valores absolutos dos erros, penaliza igualmente todos os erros.
-
----
-
-# Conclusão
-
-Este conjunto de slides apresenta uma introdução sólida e prática aos conceitos fundamentais de Machine Learning, abordando os tipos de aprendizagem, modelos clássicos como árvores de decisão, regressão linear, SVM e Random Forests, bem como métodos para redução de dimensionalidade (PCA) e clustering (k-means). O conteúdo também enfatiza a importância do equilíbrio bias-variância e apresenta as principais métricas para avaliação de modelos de classificação e regressão.
-
----
-
-Se desejar, posso também ajudar a criar exemplos práticos em código Python para estes conceitos.
