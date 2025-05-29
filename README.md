@@ -103,26 +103,93 @@ Por fim, serão analisados o desempenho dos modelos, considerando o tempo de pro
 
 O algoritmo **ID3** (Iterative Dichotomiser 3) é uma técnica popular de aprendizagem supervisionada utilizada para construir árvores de decisão a partir de conjuntos de dados. Este algoritmo é amplamente aplicado em problemas de classificação, onde o objetivo é predizer a classe ou categoria de um dado exemplo com base em atributos observados.
 
-O ID3 baseia-se no conceito de entropia e ganho de informação para decidir qual atributo deve ser usado para dividir os dados em cada passo, criando uma árvore que tenta representar da melhor forma possível as regras de decisão presentes no conjunto de dados.
+Este algoritmo baseia-se no conceitos de Entropia e Ganho de informação para decidir qual atributo deve ser usado para dividir os dados em cada passo, criando uma árvore que tenta representar da melhor forma possível as regras de decisão presentes no conjunto de dados.
 
 ### 2.2.1 Funcionamento do Algoritmo
 
 O funcionamento do algoritmo ID3 assenta na construção recursiva de uma árvore de decisão, selecionando em cada passo o atributo que melhor separa os dados segundo uma métrica estatística chamada **ganho de informação**. O processo é o seguinte:
 
-- **Cálculo da Entropia:** Para cada conjunto de exemplos, calcula-se a entropia, que mede a impureza ou incerteza dos dados em relação às classes.
+### 2.2.2 Cálculo da Entropia
 
-- **Cálculo do Ganho de Informação:** Para cada atributo disponível, calcula-se o ganho de informação, que representa a redução da entropia ao segmentar os dados por esse atributo. O atributo com maior ganho de informação é escolhido para fazer a divisão naquele nó da árvore.
+O conceito de Entropia consiste numa medida de incerteza relativamente a uma variável aleatória: quanto mais informação, menos entropia.
 
-- **Divisão dos Dados:** O conjunto de dados é dividido em subconjuntos com base nos valores do atributo selecionado.
+Por Exemplo: 
 
-- **Recursão:** O algoritmo é aplicado recursivamente a cada subconjunto, até que um dos seguintes critérios seja atingido:
-  - Todos os exemplos no subconjunto pertencem à mesma classe (nó folha).
-  - Não há mais atributos para dividir, sendo então atribuído o valor da classe mais frequente.
-  - O subconjunto está vazio, atribuindo-se o valor da classe majoritária do nó pai.
+Se uma variavel aleatoria tem apenas um valor possível, a entropia é 0.
+Uma moeda equilibrada com 2 faces tem 1 de entropia (2 resultados igaulmente Possiveis)
+
+Por outro lado se uma moeda está viciada e 99% das vezes que a atiramos, recebemos
+”cara”, então a entropia será muito menor que 1, uma vez que a incerteza é também ela muito menor.
+
+Podemos Defenir Entropia Como:
+
+**H(V) = - &sum;<sub>k</sub> P(v<sub>k</sub>) log<sub>2</sub> P(v<sub>k</sub>)**
+
+Exemplo 1: <p><i>H</i>(equilibrada) = - (0.5 log<sub>2</sub> 0.5 + 0.5 log<sub>2</sub> 0.5) = 1</p>
+Exemplo 2: <p><i>H</i>(viciada) = - (0.99 log<sub>2</sub> 0.99 + 0.01 log<sub>2</sub> 0.01) = 0.08</p>
+
+Para cada conjunto de exemplos, calcula-se a entropia, que mede a impureza ou incerteza dos dados em relação às classes.
+
+### 2.2.3 Cálculo do Ganho de Informação
+
+Para cada atributo disponível, calcula-se o ganho de informação, que representa a redução da entropia ao segmentar os dados por esse atributo. O atributo com maior ganho de informação é escolhido para fazer a divisão naquele nó da árvore.
+
+A ideia é escolher um atributo **A** de tal forma que a entropia do conjunto de dados desça. Medimos esta redução calculando a entropia que resta depois de efectuado o teste ao atributo.
+
+Um atributo **A** com *d* valores diferentes divide o conjunto de treino **E** em subconjuntos **(E<sub>1</sub>,...,E<sub>d</sub>).** Cada subconjunto **(E<sub>k</sub>)**  tem **(P<sub>k</sub>)**  exemplos positivos e **(N<sub>k</sub>)**  exemplos negativos, pelo que precisaremos de B**(<sup>p<sub>k</sub></sup>/<sub>p<sub>k</sub> + n<sub>k</sub></sub>)** bits de informação para responder à questão. 
+
+Um exemplo escolhido aleatoriamente tem probabilidade  
+**(p<sub>k</sub> + n<sub>k</sub>)/(p + n)** de pertencer a **(E<sub>k</sub>)**, pelo que a restante entropia depois de escolhido o atributo pode ser calculada da seguinte forma:
+
+**Resto(A) = ∑<sub>k=1</sub><sup>d</sup> ((p<sub>k</sub> + n<sub>k</sub>) / (p + n)) × B(p<sub>k</sub> / (p<sub>k</sub> + n<sub>k</sub>))**
+
+O ganho de informação é então calculado da seguinte forma para um atributo
+
+**Ganho(A) = B(p / (p + n)) - Resto(A)**
+
+### 2.2.4 Divisão dos Dados Criaçao da Arvore
+
+Passamos entao a divisão dos dados estes são divididos em subconjuntos com base nos valores do atributo selecionado.
+
+Neste caso, podemos ver que o atributo mais importante dos dois é o `Patrons`.
+
+Com `Type`, mantemos exactamente a mesma distribui¸ção após a separaçãao
+dos exemplos pelos valores de atributos.
+Com `Patrons`, conseguimos logo dar uma resposta relativamente a bastantes exemplos, ficando apenas por resolver o caso em que o valor de Patrons é `Full`
+
+![image](https://github.com/user-attachments/assets/3a619240-0ee4-44c6-ab4a-c229ea2247fd)
+
+Após escolhermos o atributo mais importante, existem quatro casos possíveis:
+
+- Se todos os exemplos que restam são todos positivos ou negativos, então já podemos dar uma resposta: Sim ou Não. Por exemplo, *Patrons = None*.
+- Se existem alguns exemplos positivos ou negativos então voltamos a escolher o melhor atributo para os separar. Por exemplo em *Patrons = Full* é escolhido o atributo *Hungry*.
+- Se já não existem exemplos, então quer dizer que ainda não foi visto nenhum caso com aquela combinação de atributos. Assim sendo, retornamos o output mais comum do conjunto de exemplos que foi usado na construção do nó pai.
+- Se já não existem atributos para usar, mas ainda temos exemplos positivos e negativos, então quer dizer que estes exemplos têm a mesma descrição, mas diferentes classificações. Neste caso, retornamos o valor de output mais comum neste conjunto de exemplos.
 
 Desta forma, o ID3 cria uma árvore onde cada nó interno corresponde a um teste num atributo, cada ramo corresponde a um resultado possível desse teste, e cada folha representa uma classe final.
 
 O objetivo final é gerar uma árvore de decisão que generalize bem os dados, permitindo classificar novos exemplos de forma eficiente e precisa.
+
+
+### 2.2.5 Código
+
+
+
+
+
+### 2.2.6 Exemplo Prático (VIDEO)
+
+De forma A entender tudo isto de uma Maneira mais vizual deixo aqui um video de toda a explicação do Funcionamento do Algoritmo MinMax bem como o Funcionamento da Árvore de Decisão do mesmo
+[VIDEO](https://www.youtube.com/watch?v=aLsReomQ7AA)
+
+
+
+
+
+
+
+
+
 
 ## 2.3 Algoritmo SVM (Support Vector Machine)
 
