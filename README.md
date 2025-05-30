@@ -350,6 +350,10 @@ O **kernel trick** permite calcular produtos escalares nesse espaço elevado sem
 
 ### 2.5.6 Exemplo Prático (VIDEO)
 
+De forma A entender tudo isto de uma Maneira mais vizual deixo aqui um video de toda a explicação do Funcionamento do Algoritmo SVM
+[VIDEO](https://www.youtube.com/watch?v=_YPScrckx28)
+
+# 3. METRICAS DE AVALIAÇÃO
 
 
 
@@ -378,12 +382,6 @@ O **kernel trick** permite calcular produtos escalares nesse espaço elevado sem
 
 
 
-## 4. Conceitos Importantes: Bias e Variância
-
-- **Bias:** tendência do modelo de não capturar padrões reais devido à simplicidade do modelo (underfitting).
-- **Variância:** sensibilidade do modelo a variações nos dados de treino, que pode causar overfitting.
-- O tradeoff entre bias e variância é fundamental para um bom modelo (bias-variance tradeoff).
-- Princípio de Ockham's Razor: escolher o modelo mais simples que explica bem os dados.
 
 
 ## 11. Métricas de Avaliação para Classificadores
@@ -401,4 +399,156 @@ O **kernel trick** permite calcular produtos escalares nesse espaço elevado sem
 - **Mean Absolute Error (MAE):** média dos valores absolutos dos erros, penaliza igualmente todos os erros.
 
 ---
+
+
+# 3 TESTES ESTUDO DE TEMPOS E MEMORIA
+
+## 3.1 INDICAÇOES DE TESTES / RESULTADOS ESPERADOS
+
+ALFA BETA (Melhor das hipoteses Empate)
+MIN MAX (Melhor das hipoteses Empate)
+Alfa e Beta devem Realizar os dois a mesma jogada u ma vez que realiuzam a melhor jogada
+MONTE CARLO (Possivel Vitoria uma vez que é um Algoritmo Estatistico)
+
+## 3.2 Jogo-Teste2 (MINMAX)
+
+| **JOGADA**   | **Tempo JOGADA** | **Tempo TOTAL** | **Memoria JOGADA** | **Memoria TOTAL** |
+|--------------|------------------|------------------|---------------------|--------------------|
+| <span style="color:red">**JOGADA1**</span>  | 8.70ms          | 8.70ms          | 9.54MB             | 9.54MB             |
+| <span style="color:green">**JOGADA2**</span> | 0.10ms           | 8.80ms          | 9.54MB             | 19.07MB            |
+| <span style="color:blue">**JOGADA3**</span> | 0.00ms           | 8.80ms          | 9.54MB             | 28.61MB            |
+| <span style="color:red">**JOGADA4**</span> | 0.00ms           | 8.80ms           | 9.54MB             | 28.61MB            |
+
+### Jogada 1
+[Jogada 1](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/MINMAX_T1_JOG1.png?raw=true)
+
+### Jogada 2
+[Jogada 2](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/MINMAX_T1_JOG2.png?raw=true)
+
+### Jogada 3
+[Jogada 3](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/MINMAX_T1_JOG3.png?raw=true)
+
+### Jogada 4
+[Jogada 4](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/MINMAX_T1_JOG4.png?raw=true)
+
+### Estado Final
+[Estado Final](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/MINMAX_T1_FINAL.png?raw=true)
+
+
+## 3.3 Jogo-Teste1 (ALFA BETA)
+
+| JOGADA   | Tempo JOGADA | Tempo TOTAL | Memoria JOGADA | Memoria TOTAL |
+|----------|---------------|--------------|----------------|----------------|
+| <span style="color:red">**JOGADA1**</span> | 1.50ms        | 1.50ms       | 9.54MB         | 9.54MB         |
+| <span style="color:green">**JOGADA2**</span> | 0.00ms        | 1.50ms       | 9.54MB         | 19.07MB        |
+| <span style="color:blue">**JOGADA3**</span> | 0.00ms        | 1.50ms       | 9.54MB         | 28.61MB        |
+| <span style="color:red">**JOGADA4**</span> | 0.00ms        | 1.50ms       | 9.54MB         | 38.15MB        |
+
+
+### Jogada 1
+[Jogada 1](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/ALFABETA_T1_JOG1.png?raw=true)
+
+### Jogada 2
+[Jogada 2](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/ALFABETA_T1_JOG2.png?raw=true)
+
+### Jogada 3
+[Jogada 3](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/ALFABETA_T1_JOG3.png?raw=true)
+
+### Jogada 4
+[Jogada 4](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/ALFABETA_T1_JOG4.png?raw=true)
+
+### Estado Final
+[Estado Final](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/ALFABETA_T1_FINAL.png?raw=true)
+
+
+
+### 3.4 Jogo-Teste (MONTE CARLO)
+
+| JOGADA   | Tempo JOGADA | Tempo TOTAL | Memoria JOGADA | Memoria TOTAL |
+|----------|---------------|--------------|----------------|----------------|
+| <span style="color:red">**JOGADA1**</span> | 2.60/2.70ms        | 2.70ms       | 9.54MB         | 9.54MB         |
+| <span style="color:green">**JOGADA2**</span> | 0.60ms        | 3.30ms       | 9.54MB         | 19.07MB        |
+| <span style="color:blue">**JOGADA3**</span> | 0.30/0.40ms        | 3.70ms       | 9.54MB         | 28.61MB        |
+| <span style="color:red">**JOGADA4**</span> | --------       | 3.70ms       | ----------      | 28.61MB        |
+
+
+
+### Jogada 1
+[Jogada 1](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/MONTECARLO_T1_JOG1.png?raw=true)
+
+### Jogada 2
+[Jogada 2](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/MONTECARLO_T1_JOG2.png?raw=true)
+
+### Jogada 3
+[Jogada 3](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/MONTECARLO_T1_JOG3.png?raw=true)
+
+### Estado Final
+[Estado Final](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/MONTECARLO_T1_FINAL.png?raw=true)
+
+
+
+# ANALISE DOS RESULTADOS E RESULTADOS ESPERADOS CONFIRMAÇOES
+
+MINMAX (Melhor das hipoteses Empate, impossivel ganhar) ✅ Confirmado!
+
+ALFA BETA (Melhor das hipoteses Empate, impossivel ganhar) ✅ Confirmado!
+
+ALFA-BETA e MINMAX (devem Realizar os dois a mesma jogada uma vez que realizam a melhor jogada) ✅ Confirmado! 
+
+MONTE CARLO (Possivel Vitoria uma vez que é um Algoritmo Estatistico) ✅ Confirmado!
+
+
+
+
+## Estudo de Tempos de Execução (Base nos Dados Obtidos)
+
+Após analisarmos os tempos de execução obtidos, notámos diferenças bastante claras entre os três algoritmos implementados.
+
+O algoritmo **MINMAX** revelou-se o **menos eficiente em termos de tempo**, com a **primeira jogada a demorar 10.90ms**, o que resultou num **tempo total de 11.00ms**. Este comportamento já era esperado, pois o MINMAX avalia todas as possibilidades do jogo logo de início, o que faz com que a **primeira jogada demore muito mais tempo**. Ou seja, gasta-se mais tempo a pensar antes de jogar pela primeira vez.
+
+Por outro lado, o algoritmo **ALFA-BETA** mostrou um desempenho muito melhor. O **tempo total foi apenas de 1.20ms**, sendo que a **primeira jogada demorou 1.10ms**. Esta melhoria deve-se à técnica de **poda alfa-beta**, que basicamente ignora os ramos da árvore que não têm impacto na decisão final, poupando tempo e esforço computacional.
+
+O algoritmo **MONTE CARLO** ficou a meio termo. A **primeira jogada demorou 3.80ms** e o **tempo total foi de 5.50ms**. Isto é aceitável, já que este método funciona com simulações aleatórias — neste caso, foram feitas **100 simulações** por jogada. Este tipo de algoritmo é mais variável: o seu desempenho pode melhorar ou piorar dependendo do número de simulações que forem feitas. Por isso, é **muito dependente da situação específica** e do tempo que se pode gastar a pensar.
+
+No geral, o **ALFA-BETA foi o mais rápido**, aconcluido assim que este é o **mais recomendado para o jogo do Galo**,entre outros jogos onde é necessario haver uma resposta rápida e comqualidade na decisão.
+
+
+## Estudo da Memória com (Base nos Dados)
+
+Nesta avaliação, o estudo da memória foi realizado de forma geral, considerando a memoriageral de processamento total da jogada do computador, e não especificamente associado a cada método de pesquisa utilizado.
+
+No entanto, é fácil perceber que há diferenças relevantes entre os algoritmos. 
+O Minimax tende a utilizar mais memória, pois constrói e percorre toda a árvore, mantendo em memória múltiplos toda a informaçao dos nos.  Maior Numero de Nós Maior= Memoria
+Já o Alpha-Beta, embora baseado na mesma estrutura, reduz o uso de memóriaao eliminar ramos atravez do processo de poda o que elimina nós desnecessários, guardando apenas os caminhos relevantes. Menor Numero de Nós = Maior Memoria
+
+No caso do Monte Carlo, o consumo de memória depende diretamente do número de simulações realizadas, uma vez que cada simulação requer uma cópia do estado atual do tabuleiro e gera novos estados aleatórios até ao fim do jogo. Assim, embora a medição de memória aplicada seja útil para uma comparação geral, ela não reflete isoladamente o impacto de cada algoritmo, mas sim o total de recursos utilizados durante a execução da jogada.
+
+
+
+# 4 CONCLUSÃO
+
+Neste trabalho, analisámos e comparámos os algoritmos Minimax, Alfa-Beta  e Monte Carlo , aplicados ao Jogo do Galo. Com isso, conseguimos perceber bem as diferenças entre estratégias que analisam tudo ao detalhe e outras que usam “atalhos” para decidir mais rápido. Também vimos como essas abordagens afetam a rapidez do algoritmo e a qualidade das jogadas.
+
+O Minimax mostrou-se super preciso e é perfeito para jogos pequenos como o Jogo do Galo. Como analisa todas as jogadas possíveis, consegue sempre escolher a melhor opção — desde que os dois jogadores joguem bem. O problema é que, em jogos mais complicados, torna-se lento porque tem de ver demasiadas possibilidades.
+
+A Alfa-Beta é uma melhoria do Minimax que ajuda o algoritmo a decidir mais depressa, porque corta as partes da análise que não vão influenciar na decisão final. Isso faz com que funcione muito melhor em tempo real e sem gastar tantos recursos. No Galo, funciona lindamente.
+
+Já o Monte Carlo (MCTS) usa simulações aleatórias para decidir o que fazer. Em vez de calcular tudo como o Minimax, ele joga várias vezes “na sorte” para ver o que pode resultar melhor. Pode não ser perfeito, mas é bem mais leve e adapta-se bem quando o jogo é mais complexo ou quando queremos decisões rápidas e com jogadas diferentes do habitual.
+Resumindo: se for para jogar bem e rápido no Jogo do Galo, o Minimax com Alfa-Beta é a melhor escolha. Mas se estivermos a lidar com jogos maiores ou quisermos uma IA que não jogue sempre igual, o MCTS é uma boa opção por ser mais flexível e escalável.
+
+## FONTES
+
+Slides Teoricos da Cadeira de Sistemas Inteligentes
+
+https://www.hypatiamat.com/jogos/jogoDoGalo/jogoDoGalo_Vhtml.html
+https://www.mygreatlearning.com/blog/alpha-beta-pruning-in-ai/
+https://cs.stanford.edu/people/eroberts/courses/soco/projects/2003-04/intelligent-search/minimax.html
+https://medium.com/data-science/a-gentle-introduction-to-monte-carlo-methods-98451674018d
+
+Videos:
+
+https://www.youtube.com/watch?v=KU9Ch59-4vw&t=9s
+https://www.youtube.com/watch?v=9D1hVGumxCo&t=14s
+https://www.youtube.com/watch?v=hhBNk0xmZ9U&t=43s
+
 
