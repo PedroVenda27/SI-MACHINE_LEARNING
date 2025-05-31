@@ -477,11 +477,58 @@ preds = [0, 0, 2, 2, 0, 2]
 f1_score(trues, preds)
 ```
 
-## 12. Métricas de Avaliação para Regressão
+## 3.2 Métricas de Avaliação para Regressores
 
-- **Mean Squared Error (MSE):** média dos quadrados dos erros, penaliza erros grandes.
+Tal como acontece na classificação, é útil saber quão boas estão a ser as previsões dos nossos regressores.  
+Para tal, existem algumas métricas básicas e intuitivas que nos podem ajudar a perceber melhor quão boa é a performance do nosso modelo.
+
+### 3.2.1 Mean Squared Error (MSE)
+
+Uma das mais básicas de compreender é o **Mean Squared Error (MSE)**, esta é também muitas vezes usada como **loss function** em alguns algoritmos de ML e representa a média do quadrado dos erros do nosso regressor:
+
+<p>
+  MSE = (1 / N) × Σ<sub>i=1</sub><sup>n</sup> (Y<sub>i</sub> − TrueY<sub>i</sub>)²
+</p>
+
+O facto de considerarmos o quadrado do erro, irá inflacionar erros muito grosseiros.
+
+```python
+from sklearn.metrics import mean_squared_error
+
+trues = [1, 1, 0, 0, 1, 0]
+preds = [0.95, 0.85, 0.9, 0.8, 0.7, 0.3]
+
+error = mean_squared_error(trues, preds)
 - **Root Mean Squared Error (RMSE):** raiz quadrada do MSE.
 - **Mean Absolute Error (MAE):** média dos valores absolutos dos erros, penaliza igualmente todos os erros.
+
+```
+#### 3.2.1 Root Mean Squared Error (RMSE)
+
+Uma extensão desta métrica é a **RMSE (Root Mean Squared Error)**, esta corresponde à raiz quadrada do MSE.  
+
+Podemos calcular esta função passando um argumento adicional à MSE do Scikit:
+
+```python
+error = mean_squared_error(trues, preds, squared=False)
+```
+
+### 3.2.2 Mean Absolute Error (MAE)
+
+Outra métrica bastante comum é o **Mean Absolute Error (MAE)**, que ao contrário das suas métricas anteriores não penaliza com magnitudes diferentes erros de ordem diferentes (pois não faz o quadrado dos erros).
+
+<p>
+  MAE = (1 / N) × Σ<sub>i=1</sub><sup>n</sup> |Y<sub>i</sub> − TrueY<sub>i</sub>|
+</p>
+
+```python
+from sklearn.metrics import mean_absolute_error
+
+trues = [1, 1, 0, 0, 1, 0]
+preds = [0.95, 0.85, 0.9, 0.8, 0.7, 0.3]
+
+error = mean_absolute_error(trues, preds)
+```
 
 ---
 
