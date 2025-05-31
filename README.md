@@ -384,13 +384,98 @@ De forma A entender tudo isto de uma Maneira mais vizual deixo aqui um video de 
 
 
 
-## 11. Métricas de Avaliação para Classificadores
 
-- **Accuracy:** proporção de classificações corretas, mas pode ser enganadora em dados desbalanceados.
-- **Matriz de Confusão:** compara valores previstos vs reais, base para outras métricas.
-- **Precision:** proporção de verdadeiros positivos entre as predições positivas.
-- **Recall:** proporção de verdadeiros positivos entre os casos reais positivos.
-- **F1 Score:** média harmônica entre Precision e Recall, balanceando os dois.
+
+## 3.1 Métricas de Avaliação para Classificadores
+
+Os classificadores atribuem labels a cada uma das observações que lhes forem fornecidas. No entanto, precisamos de arranjar técnicas para medir quão bem estas atribuições estão a ser feitas
+
+## 3.1.1 Accuracy
+
+Uma das medidas mais fáceis de entender é a **Accuracy**. Para efeitos de simplicidade vamos assumir que temos duas classes: Verdade e Falso.
+
+<p>
+  Accuracy = (TP + TN) / (TP + TN + FP + FN)
+</p>
+
+Onde:
+**TP** significa *True Positives* (valores que o modelo diz que são verdade e são de facto),  
+**TN** significa *True Negatives* (valores que o modelo descreve como falso e são de facto),  
+**FP** significa *False Positives* (valores que o modelo diz serem verdade, mas são falsos)  
+**FN** significa *False Negatives* (valores previstos como falsos, mas que são verdadeiros).
+
+Um valor de 99% de **Accuracy** significa que o nosso modelo acertou em 99% dos casos que lhe foram dados a classificar.
+
+No entanto, a Accuracy pode ser bastante enganadora, dependendo das características do conjunto de dados.
+
+
+## 3.1.2 Matriz de Confusão
+
+Outra forma muito comum de avaliarmos um classificador é através da análise de uma **matriz de confusão**. A matriz de confusão combina os valores previstos e os valores verdadeiros das observações numa tabela.
+
+![image](https://github.com/user-attachments/assets/cc76a0eb-5b56-41ad-93d2-03017fa34cfa)
+
+
+Através da análise desta tabela, é possível extrair várias métricas como Precision, Recall, Accuracy e AUC-ROC, entre outras.
+
+```python
+from sklearn.metrics import confusion_matrix
+
+trues = [2, 0, 2, 2, 0, 1]
+preds = [0, 0, 2, 2, 0, 2]
+
+confusion_matrix(trues, preds)
+```
+
+## 3.1.3 Precision
+
+A Precision Calcula quantos dos casos em que o modelo acertou são positivos sendo útil quando é preferível existirem Falsos Negativos a existirem Falsos Positivos.
+
+<p>
+  Precision = TP / (TP + FP)
+</p>
+
+```python
+from sklearn.metrics import precision_score
+
+trues = [2, 0, 2, 2, 0, 1]
+preds = [0, 0, 2, 2, 0, 2]
+
+precision_score(trues, preds)
+```
+
+## 3.1.2 Recall
+
+Por sua vez o Recall Calcula quantos positivos fomos capaz de prever correctamente sendo útil quando é preferível existirem Falsos Positivos a existirem Falsos Negativos.
+
+<p>Recall = TP / (TP + FN)</p>
+
+```python
+from sklearn.metrics import recall_score
+
+trues = [2, 0, 2, 2, 0, 1]
+preds = [0, 0, 2, 2, 0, 2]
+
+recall_score(trues, preds)
+
+```
+
+## 3.1.2 F1 Score
+
+Por Fim F1 Score traduz a Média harmónica de Precision e Recall.  Máxima quando ambas as métricas são iguais esta é Bastante útil quando FP e FN são igualmente maus.
+
+<p>
+  F1 = 2 × (Precision × Recall) / (Precision + Recall)
+</p>
+
+```python
+from sklearn.metrics import f1_score
+
+trues = [2, 0, 2, 2, 0, 1]
+preds = [0, 0, 2, 2, 0, 2]
+
+f1_score(trues, preds)
+```
 
 ## 12. Métricas de Avaliação para Regressão
 
