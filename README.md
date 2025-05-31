@@ -355,37 +355,6 @@ De forma A entender tudo isto de uma Maneira mais vizual deixo aqui um video de 
 
 # 3. METRICAS DE AVALIAÇÃO
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## 3.1 Métricas de Avaliação para Classificadores
 
 Os classificadores atribuem labels a cada uma das observações que lhes forem fornecidas. No entanto, precisamos de arranjar técnicas para medir quão bem estas atribuições estão a ser feitas
@@ -533,131 +502,381 @@ error = mean_absolute_error(trues, preds)
 ---
 
 
-# 3 TESTES ESTUDO DE TEMPOS E MEMORIA
+# 4 RESULTADOS/TESTES ESTUDO DE TEMPOS E MEMORIA
 
-## 3.1 INDICAÇOES DE TESTES / RESULTADOS ESPERADOS
+## 4.1 IRIS (CLASSIFICAÇÃO)
 
-ALFA BETA (Melhor das hipoteses Empate)
-MIN MAX (Melhor das hipoteses Empate)
-Alfa e Beta devem Realizar os dois a mesma jogada u ma vez que realiuzam a melhor jogada
-MONTE CARLO (Possivel Vitoria uma vez que é um Algoritmo Estatistico)
+### 4.1.1 Estatísticas básicas: Dataset Iris
 
-## 3.2 Jogo-Teste2 (MINMAX)
+| Feature            | Count | Mean     | Std Dev  | Min | 25% | 50% (Mediana) | 75% | Max |
+|--------------------|-------|----------|----------|-----|-----|----------------|-----|-----|
+| Sepal Length (cm)  | 150.0 | 5.843    | 0.828    | 4.3 | 5.1 | 5.80           | 6.4 | 7.9 |
+| Sepal Width (cm)   | 150.0 | 3.057    | 0.436    | 2.0 | 2.8 | 3.00           | 3.3 | 4.4 |
+| Petal Length (cm)  | 150.0 | 3.758    | 1.765    | 1.0 | 1.6 | 4.35           | 5.1 | 6.9 |
+| Petal Width (cm)   | 150.0 | 1.199    | 0.762    | 0.1 | 0.3 | 1.30           | 1.8 | 2.5 |
+| Target             | 150.0 | 1.000    | 0.819    | 0.0 | 0.0 | 1.00           | 2.0 | 2.0 |
 
-| **JOGADA**   | **Tempo JOGADA** | **Tempo TOTAL** | **Memoria JOGADA** | **Memoria TOTAL** |
-|--------------|------------------|------------------|---------------------|--------------------|
-| <span style="color:red">**JOGADA1**</span>  | 8.70ms          | 8.70ms          | 9.54MB             | 9.54MB             |
-| <span style="color:green">**JOGADA2**</span> | 0.10ms           | 8.80ms          | 9.54MB             | 19.07MB            |
-| <span style="color:blue">**JOGADA3**</span> | 0.00ms           | 8.80ms          | 9.54MB             | 28.61MB            |
-| <span style="color:red">**JOGADA4**</span> | 0.00ms           | 8.80ms           | 9.54MB             | 28.61MB            |
+### Interpretação dos dados
 
-### Jogada 1
-[Jogada 1](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/MINMAX_T1_JOG1.png?raw=true)
+- ``count``: número de amostras por coluna. Todas as colunas têm 150 valores (Iris dataset completo).
+- ``mean`` : média 
+  - Sepal Length ≈ 5.843
+  - Sepal Width ≈ 3.057
+  - Petal Length ≈ 3.758
+  - Petal Width ≈ 1.199
+  - Target = 1.000 → indica distribuição balanceada entre as classes (0, 1, 2).
 
-### Jogada 2
-[Jogada 2](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/MINMAX_T1_JOG2.png?raw=true)
+- ``std``: desvio padrão
+  - Sepal Length ≈ 0.828
+  - Sepal Width ≈ 0.436
+  - Petal Length ≈ 1.765 → maior variação
+  - Petal Width ≈ 0.762
+  - Target ≈ 0.819
 
-### Jogada 3
-[Jogada 3](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/MINMAX_T1_JOG3.png?raw=true)
+- ``min / 25% / 50% (Mediana) / 75% / max``:
+  - Sepal Length varia entre 4.3 e 7.9 cm (mediana: 5.80)
+  - Sepal Width varia entre 2.0 e 4.4 cm (mediana: 3.00)
+  - Petal Length varia entre 1.0 e 6.9 cm (mediana: 4.35)
+  - Petal Width varia entre 0.1 e 2.5 cm (mediana: 1.30)
+  - Target varia de 0 a 2 → 0 = *setosa*, 1 = *versicolor*, 2 = *virginica*
 
-### Jogada 4
-[Jogada 4](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/MINMAX_T1_JOG4.png?raw=true)
+---
+## 4.2 Modelo ID3 (Criterio Entorpy)
 
-### Estado Final
-[Estado Final](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/MINMAX_T1_FINAL.png?raw=true)
+### 4.2.1 Resultados Modelo ID3 (Criterio Entorpy)
 
+- **Tempo de Treino (fit)**: 0.003621 segundos     
+- **Tempo de Predição (predict)**: 0.001658 segundos  
+- **Acurácia**: 0.8889  
+- **Precision (macro média)**: 0.8899  
+- **Recall (macro média)**: 0.8889  
+- **F1‐Score (macro média)**: 0.8888  
 
-## 3.3 Jogo-Teste1 (ALFA BETA)
+**Matriz de Confusão:**
 
-| JOGADA   | Tempo JOGADA | Tempo TOTAL | Memoria JOGADA | Memoria TOTAL |
-|----------|---------------|--------------|----------------|----------------|
-| <span style="color:red">**JOGADA1**</span> | 1.50ms        | 1.50ms       | 9.54MB         | 9.54MB         |
-| <span style="color:green">**JOGADA2**</span> | 0.00ms        | 1.50ms       | 9.54MB         | 19.07MB        |
-| <span style="color:blue">**JOGADA3**</span> | 0.00ms        | 1.50ms       | 9.54MB         | 28.61MB        |
-| <span style="color:red">**JOGADA4**</span> | 0.00ms        | 1.50ms       | 9.54MB         | 38.15MB        |
+|               | Previsto: Setosa | Previsto: Versicolor | Previsto: Virginica |
+|---------------|------------------|-----------------------|---------------------|
+| Real: Setosa  |        15        |          0            |         0           |
+| Real: Versicolor |     0         |         13            |         2           |
+| Real: Virginica  |     0         |          3            |        12           |
 
+**Relatório de Classificação por Classe:**
 
-### Jogada 1
-[Jogada 1](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/ALFABETA_T1_JOG1.png?raw=true)
-
-### Jogada 2
-[Jogada 2](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/ALFABETA_T1_JOG2.png?raw=true)
-
-### Jogada 3
-[Jogada 3](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/ALFABETA_T1_JOG3.png?raw=true)
-
-### Jogada 4
-[Jogada 4](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/ALFABETA_T1_JOG4.png?raw=true)
-
-### Estado Final
-[Estado Final](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/ALFABETA_T1_FINAL.png?raw=true)
-
-
-
-### 3.4 Jogo-Teste (MONTE CARLO)
-
-| JOGADA   | Tempo JOGADA | Tempo TOTAL | Memoria JOGADA | Memoria TOTAL |
-|----------|---------------|--------------|----------------|----------------|
-| <span style="color:red">**JOGADA1**</span> | 2.60/2.70ms        | 2.70ms       | 9.54MB         | 9.54MB         |
-| <span style="color:green">**JOGADA2**</span> | 0.60ms        | 3.30ms       | 9.54MB         | 19.07MB        |
-| <span style="color:blue">**JOGADA3**</span> | 0.30/0.40ms        | 3.70ms       | 9.54MB         | 28.61MB        |
-| <span style="color:red">**JOGADA4**</span> | --------       | 3.70ms       | ----------      | 28.61MB        |
+| Classe       | Precision | Recall | F1-Score | Suporte |
+|--------------|-----------|--------|----------|---------|
+| Setosa       | 1.00      | 1.00   | 1.00     | 15      |
+| Versicolor   | 0.81      | 0.87   | 0.84     | 15      |
+| Virginica    | 0.86      | 0.80   | 0.83     | 15      |
+| **Média**    | **0.89**  | **0.89** | **0.89** | **45**  |
 
 
+### Interpretação dos dados
 
-### Jogada 1
-[Jogada 1](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/MONTECARLO_T1_JOG1.png?raw=true)
+**Tempos de Treino e Predição**
 
-### Jogada 2
-[Jogada 2](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/MONTECARLO_T1_JOG2.png?raw=true)
+- ``Treino (fit)``: ~0.003621 segundos  
+- ``Predição (predict)``: ~0.001658 segundos  
 
-### Jogada 3
-[Jogada 3](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/MONTECARLO_T1_JOG3.png?raw=true)
+> O modelo ID3 foi extremamente rápido tanto no treino quanto na predição das 45 amostras de teste (30% de 150).
 
-### Estado Final
-[Estado Final](https://github.com/PedroVenda27/SI-JOGODOGALO/blob/main/img/MONTECARLO_T1_FINAL.png?raw=true)
+**Acurácia (Accuracy)**
 
+<p>
+Accuracy = <span style="font-style: italic;">nº de acertos</span> / <span style="font-style: italic;">total de amostras de teste</span> = 
+(15 + 13 + 12) / 45 = 40 / 45 ≈ 0.8889
+</p>
 
+> O modelo classificou corretamente **40 de 45 exemplos**.
+> Errando **5 exemplos**.
 
-# ANALISE DOS RESULTADOS E RESULTADOS ESPERADOS CONFIRMAÇOES
+**Precision, Recall e F1‐Score (Média Macro)**
 
-MINMAX (Melhor das hipoteses Empate, impossivel ganhar) ✅ Confirmado!
+- ``Precision (macro)`` = 0.8899
+- ``Recall (macro)`` = 0.8889
+- ``F1‐Score (macro)`` = 0.8888
 
-ALFA BETA (Melhor das hipoteses Empate, impossivel ganhar) ✅ Confirmado!
+**Nota**: Estas métricas são calculadas separadamente para cada classe e depois faz a média sem ponderação, ou seja, **cada classe tem o mesmo peso**.
 
-ALFA-BETA e MINMAX (devem Realizar os dois a mesma jogada uma vez que realizam a melhor jogada) ✅ Confirmado! 
+> Precision (VP / (VP + FP)): o modelo acerta em ≈ 88.99% das vezes que prevê uma classe.
 
-MONTE CARLO (Possivel Vitoria uma vez que é um Algoritmo Estatistico) ✅ Confirmado!
+> Recall (VP / (VP + FN)): ≈ 88.89% dos exemplos reais de cada classe foram corretamente identificados.
 
-
-
-
-## Estudo de Tempos de Execução (Base nos Dados Obtidos)
-
-Após analisarmos os tempos de execução obtidos, notámos diferenças bastante claras entre os três algoritmos implementados.
-
-O algoritmo **MINMAX** revelou-se o **menos eficiente em termos de tempo**, com a **primeira jogada a demorar 10.90ms**, o que resultou num **tempo total de 11.00ms**. Este comportamento já era esperado, pois o MINMAX avalia todas as possibilidades do jogo logo de início, o que faz com que a **primeira jogada demore muito mais tempo**. Ou seja, gasta-se mais tempo a pensar antes de jogar pela primeira vez.
-
-Por outro lado, o algoritmo **ALFA-BETA** mostrou um desempenho muito melhor. O **tempo total foi apenas de 1.20ms**, sendo que a **primeira jogada demorou 1.10ms**. Esta melhoria deve-se à técnica de **poda alfa-beta**, que basicamente ignora os ramos da árvore que não têm impacto na decisão final, poupando tempo e esforço computacional.
-
-O algoritmo **MONTE CARLO** ficou a meio termo. A **primeira jogada demorou 3.80ms** e o **tempo total foi de 5.50ms**. Isto é aceitável, já que este método funciona com simulações aleatórias — neste caso, foram feitas **100 simulações** por jogada. Este tipo de algoritmo é mais variável: o seu desempenho pode melhorar ou piorar dependendo do número de simulações que forem feitas. Por isso, é **muito dependente da situação específica** e do tempo que se pode gastar a pensar.
-
-No geral, o **ALFA-BETA foi o mais rápido**, aconcluido assim que este é o **mais recomendado para o jogo do Galo**,entre outros jogos onde é necessario haver uma resposta rápida e comqualidade na decisão.
+> F1-Score: média harmónica entre precision e recall; equilíbrio geral entre os dois.
 
 
-## Estudo da Memória com (Base nos Dados)
+**Análise da Matriz de Confusão**
 
-Nesta avaliação, o estudo da memória foi realizado de forma geral, considerando a memoriageral de processamento total da jogada do computador, e não especificamente associado a cada método de pesquisa utilizado.
+| Verdadeiro → Previsto | Setosa | Versicolor | Virginica |
+|------------------------|--------|------------|-----------|
+| **Setosa** (0)         | 15     | 0          | 0         |
+| **Versicolor** (1)     | 0      | 13         | 2         |
+| **Virginica** (2)      | 0      | 3          | 12        |
 
-No entanto, é fácil perceber que há diferenças relevantes entre os algoritmos. 
-O Minimax tende a utilizar mais memória, pois constrói e percorre toda a árvore, mantendo em memória múltiplos toda a informaçao dos nos.  Maior Numero de Nós Maior= Memoria
-Já o Alpha-Beta, embora baseado na mesma estrutura, reduz o uso de memóriaao eliminar ramos atravez do processo de poda o que elimina nós desnecessários, guardando apenas os caminhos relevantes. Menor Numero de Nós = Maior Memoria
+> Classe Setosa: 100% correta (nenhuma confusão).
 
-No caso do Monte Carlo, o consumo de memória depende diretamente do número de simulações realizadas, uma vez que cada simulação requer uma cópia do estado atual do tabuleiro e gera novos estados aleatórios até ao fim do jogo. Assim, embora a medição de memória aplicada seja útil para uma comparação geral, ela não reflete isoladamente o impacto de cada algoritmo, mas sim o total de recursos utilizados durante a execução da jogada.
+> Classe Versicolor: 2 amostras foram confundidas com Virginica → Recall ≈ 86.7%.
+
+> Classe Virginica: 3 amostras foram confundidas com Versicolor → Recall = 80.0%.
+
+> Com base nisso conseguimos observar que as confusões ocorreram entre versicolor e virginica, o que é comum, dada a semelhança nas características das pétalas entre essas classes.
+
+---
+
+## 4.3 Modelo SVM (Kernel RBF)
+
+### 4.3.1 Resultados Modelo SVM (Kernel RBF)
+
+- **Tempo de Treino (fit)**: 0.002740 segundos  
+- **Tempo de Predição (predict)**: 0.000679 segundos  
+- **Acurácia**: 0.9333  
+- **Precision (macro média)**: 0.9345  
+- **Recall (macro média)**: 0.9333  
+- **F1‐Score (macro média)**: 0.9333  
+
+**Matriz de Confusão:**
+
+|               | Previsto: Setosa | Previsto: Versicolor | Previsto: Virginica |
+|---------------|------------------|-----------------------|---------------------|
+| Real: Setosa  |        15        |          0            |         0           |
+| Real: Versicolor |     0         |         14            |         1           |
+| Real: Virginica  |     0         |          2            |        13           |
+
+**Relatório de Classificação por Classe:**
+
+| Classe       | Precision | Recall | F1-Score | Suporte |
+|--------------|-----------|--------|----------|---------|
+| Setosa       | 1.00      | 1.00   | 1.00     | 15      |
+| Versicolor   | 0.88      | 0.93   | 0.90     | 15      |
+| Virginica    | 0.93      | 0.87   | 0.90     | 15      |
+| **Média**    | **0.93**  | **0.93** | **0.93** | **45**  |
 
 
+### Interpretação dos dados
 
-# 4 CONCLUSÃO
+**Tempos de Treino e Predição**
+
+- ``Treino (fit)``: ~0.002740 segundos  
+- ``Predição (predict)``: ~0.000679 segundos  
+
+> O SVM foi ligeiramente mais rápido a treinar e significativamente mais rápido a predizer comparado ao ID3.  
+> O pequeno número de amostras (45) e a eficiência do kernel RBF contribuíram para esses tempos reduzidos.
+
+**Acurácia (Accuracy)**
+
+<p>
+Accuracy = <span style="font-style: italic;">nº de acertos</span> / <span style="font-style: italic;">total de amostras de teste</span> =
+(15 + 14 + 13) / 45 = 42 / 45 ≈ 0.9333
+</p>
+
+> O modelo classificou corretamente **42 de 45 exemplos**, errando apenas **3 exemplos** (melhor que o ID3).
+
+**Precision, Recall e F1‐Score (Média Macro)**
+
+- ``Precision (macro)`` = 0.9345  
+- ``Recall (macro)`` = 0.9333  
+- ``F1‐Score (macro)`` = 0.9333  
+
+> O SVM apresenta **melhor desempenho geral** em comparação com o ID3.  
+
+> Todas as classes apresentam scores altos e próximos entre si (≈ 0.90–1.00), com ótimo equilíbrio.  
+
+> Isso indica um modelo bem generalizado para esse conjunto de teste.
+
+**Análise da Matriz de Confusão**
+
+| Verdadeiro → Previsto | Setosa | Versicolor | Virginica |
+|------------------------|--------|------------|-----------|
+| **Setosa** (0)         | 15     | 0          | 0         |
+| **Versicolor** (1)     | 0      | 14         | 1         |
+| **Virginica** (2)      | 0      | 2          | 13        |
+
+> **Classe Setosa**: continua perfeitamente classificada (100% de precisão e recall).  
+
+> **Versicolor**: 1 erro, confundida como Virginica → Recall ≈ 93.3%.  
+
+> **Virginica**: 2 erros, confundidas como Versicolor → Recall ≈ 86.7%.  
+
+> Comparando com o ID3, o SVM **errou menos** (3 erros contra 5).
+
+---
+
+## 4.4 Conclusão Comparativa Final (ID3 vs. SVM)
+
+- Ambos os modelos se mostraram eficazes na **classificação do dataset Iris**, especialmente na classe **Setosa**, que foi sempre corretamente identificada.
+- O **ID3**, apesar de simples e interpretável, com tempos de execução baixos, teve **mais dificuldades em distinguir entre Versicolor e Virginica**, cometendo 5 erros no total.
+- O **SVM**, utilizando o **kernel RBF**, foi **mais preciso e confiável**, com apenas 3 erros e **métricas superiores** em todas as dimensões.
+- Em termos de **tempo de execução**, **ambos foram rápidos**, mas o SVM foi ligeiramente **mais eficiente na predição**.
+- Assim podemos concluir que, para este cenário e particionamento, o **SVM foi o modelo que melhor generalizou e apresentou melhor desempenho**, sendo preferível quando se pretende maior precisão, mesmo que à custa de menor interpretabilidade.
+
+---
+
+## 4.5 DIABETES (REGRESSÃO)
+
+### 4.5.1 Estatísticas básicas: Dataset Diabetes
+
+| Feature | Count | Mean | Std Dev | Min | 25% | 50% (Mediana) | 75% | Max |
+|---------|-------|----------------|----------|---------|---------|------------------|---------|---------|
+| age     | 442.0 | ≈ 0            | 0.0476   | -0.1072 | -0.0373 | 0.0054           | 0.0381 | 0.1107 |
+| sex     | 442.0 | ≈ 0            | 0.0476   | -0.0446 | -0.0446 | -0.0446          | 0.0507 | 0.0507 |
+| bmi     | 442.0 | ≈ 0            | 0.0476   | -0.0903 | -0.0342 | -0.0073          | 0.0312 | 0.1706 |
+| bp      | 442.0 | ≈ 0            | 0.0476   | -0.1124 | -0.0367 | -0.0057          | 0.0356 | 0.1320 |
+| s1–s6   | 442.0 | ≈ 0            | 0.0476   | ≈ -0.13 | ≈ -0.03 | ≈ -0.003         | ≈ 0.03 | ≈ 0.20 |
+| target  | 442.0 | 152.13         | 77.09    | 25.0    | 87.0    | 140.5            | 211.5   | 346.0  |
+
+**Nota**: Todas as features estão normalizadas com `mean ≈ 0` e `std = 0.047619`, exceto o `target` (não normalizado), que representa a **progressão da doença**.
+
+### Interpretação dos dados
+
+- `count`: número de amostras por coluna. Todas as colunas têm 442 valores (Diabetes dataset completo).
+
+- `mean`: média  
+  - Age ≈ 0  
+  - Sex ≈ 0  
+  - BMI ≈ 0  
+  - BP ≈ 0  
+  - S1–S6 ≈ 0  
+  - Target = 152.13 → indica média do progresso da doença após 1 ano.
+
+- `std`: desvio padrão  
+  - Age ≈ 0.0476  
+  - Sex ≈ 0.0476  
+  - BMI ≈ 0.0476  
+  - BP ≈ 0.0476  
+  - S1–S6 ≈ 0.0476  
+  - Target ≈ 77.09 → alta variação nas respostas de progressão da doença.
+
+- `min / 25% / 50% (Mediana) / 75% / max`:  
+  - Age varia entre -0.1072 e 0.1107 (mediana: 0.0054)  
+  - Sex varia entre -0.0446 e 0.0507 (mediana: -0.0446)  
+  - BMI varia entre -0.0903 e 0.1706 (mediana: -0.0073)  
+  - BP varia entre -0.1124 e 0.1320 (mediana: -0.0057)  
+  - S1–S6 variam aproximadamente entre -0.13 e 0.20 (mediana: ≈ -0.003)  
+  - Target varia de 25.0 a 346.0 (mediana: 140.5)
+
+
+## 4.6 Modelo de Regressão Linear
+
+### 4.6.1 Resultados Regressão Linear
+
+- **Tempo de Treino (fit)**: 0.007937 segundos  
+- **Tempo de Predição (predict)**: 0.001121 segundos  
+- **MSE**: 2821.7510  
+- **RMSE**: 53.1202  
+- **MAE**: 41.9194  
+- **R²**: 0.4773  
+
+### Interpretação dos Resultados
+
+**Tempos de Treino e Predição**
+
+- ``Treino (fit)``: ~0.007937 segundos  
+- ``Predição (predict)``: ~0.0001121 segundos  
+
+> A Regressão Linear levou cerca de 8 ms para ajustar o modelo nos 309 exemplos de treino (70% de 442) e 1.1 ms para predizer as 133 amostras de teste.
+
+**MSE (Erro Quadrático Médio)**:  
+<p>
+  MSE = (1 / N) × Σ<sub>i=1</sub><sup>N</sup> (y<sub>i</sub> − ŷ<sub>i</sub>)² ≈ 2821.75
+</p>
+
+onde N=133 (tamanho do teste).
+
+>Fixando que os valores de target variam de 25 a 346, um MSE de aprox: 2821.75 concluimos que, em média, o quadrado do erro está nesse patamar. Como a escala do target é alta ou seja (centenas), esse valor faz certo sentido num contexto de erro absoluto médio.
+
+**RMSE (Raiz do Erro Quadrático Médio)**:  
+
+<p>
+  RMSE = √MSE ≈ 53.12
+</p>
+
+> Interpretando agora a raiz do erro medio esta fica em torno das 53 unidades da escala do target (por exemplo, se target mede algum índice de progressão de doença, o erro médio fica em ±53). Quanto menor for este valor melhor melhor.
+
+**MAE (Erro Absoluto Médio)**:  
+
+<p>
+  MAE = (1 / N) × Σ<sub>i=1</sub><sup>N</sup> |y<sub>i</sub> − ŷ<sub>i</sub>| ≈ 41.92
+</p>
+
+>Isso quer dizer que, em média, o modelo erra em ≈ 41.9 unidades no target. Note que MAE tende a ser menor que RMSE quando há poucos outliers grandes uma vez que (RMSE penaliza erros grandes mais fortemente).
+
+**Coeficiente de Determinação (R²)**
+
+<p>
+  R<sup>2</sup> = 0.4773
+</p>
+
+> Um <p>R<sup>2</sup> = 0.4773</p> significa que o modelo de regressão linear explica cerca de 47.73 % da variância total dos dados de teste. Em outras palavras, pouco menos da metade da variação em “target” é capturada pelo modelo linear com essas 10 features.
+---
+
+## 4.7 Modelo SVR (Support Vector Regression – Kernel RBF)
+
+### 4.7.1 Resultados SVR
+
+- **Tempo de Treino (fit)**: 0.003169 segundos  
+- **Tempo de Predição (predict)**: 0.003118 segundos  
+- **MSE**: 4528.1795  
+- **RMSE**: 67.2917  
+- **MAE**: 56.4342  
+- **R²**: 0.1612  
+
+### Interpretação dos Resultados
+
+**Tempos de Execução**
+
+- ``Treino:`` ~ 0.003169 s
+
+- ``Predição:`` ~ 0.003118 s
+
+> O SVR foi um pouco mais rápido para treinar do que a Regressão Linear (aprox. 3.2 ms vs 7.9 ms), mas mais lento para predizer (3.1 ms vs 1.1 ms). Em datasets pequenos, a diferença de tempos é desprezível, mas reflete a sobrecarga computacional do kernel RBF.
+
+**MSE (Erro Quadrático Médio)**:
+
+MSE = 4528.1795
+
+Maior que o da regressão linear (2821.75). Isso indica que, no conjunto de teste, os quadrados dos erros são, em média, mais altos do que para a regressão linear. Em outras palavras, o SVR “erra” mais, ao quadrado.
+
+**RMSE (Raiz do Erro Quadrático Médio)**:   
+ <p>
+  RMSE<sub>SVR</sub> ≈ 67.29 &gt; RMSE<sub>Linear</sub> ≈ 53.12
+</p>
+
+> Como RMSE = √4528.1795 ≈ 67.29, o erro médio em valor absoluto (considerando que RMSE penaliza erros maiores) é de ≈ 67 unidades do target. Lembrando que, para Regressão Linear, esse valor foi ≈ 53.12. Portanto, o SVR está pior neste particionamento..
+
+**MAE (Erro Absoluto Médio)**:   
+<p>
+  MAE<sub>SVR</sub> ≈ 56.43 &gt; MAE<sub>Linear</sub> ≈ 41.92
+</p>
+
+> Em média, o SVR erra ≈ 56.43 unidades no target. Novamente, maior que o MAE da regressão linear (41.92). Isso confirma que, apesar de o SVR modelar relações não‐lineares, ele não encontrou um padrão preditivo suficiente para melhorar sobre o modelo linear (com os parâmetros default de C=1.0 e ε=0.1).
+
+**Coeficiente de Determinação (R²)**
+
+<p>R<sup>2</sup> = 0.1612</p> 
+
+> Um valor de R² de apenas ≈ 0.1612 indica que o SVR explica 16.12 % da variância no conjunto de teste. Em contraste, a regressão linear explicava quase 48 %. Logo, o SVR com esses hiperparâmetros default está se saindo pior do que a regressão linear simples. Possíveis razões:
+
+>Hiperparâmetros não ajustados (C, ε, gamma, etc.) — normalmente é preciso fazer validação cruzada e busca de grade para obter SVR satisfatório.
+
+> A Relação primordialmente linear entre features e target → modelo linear já captura bem o sinal; SVR pode introduzir overfitting ou não se adaptar bem sem ajuste fino.
+
+## 4.8 Conclusão Comparativa Final (Regressão Linear vs SVM)
+
+ A **Regressão Linear** apresentou **menores erros** (MAE e RMSE) e **melhor capacidade explicativa** (R² quase três vezes maior) em comparação com o SVR.
+- Embora o SVR tenha treinado um pouco mais rápido, ele foi significativamente mais lento na fase de predição e não conseguiu reduzir o erro médio nos valores preditos.
+- Por fim, considerando o cenário específico (features já padronizadas e relação predominantemente linear), a Regressão Linear é o modelo **mais adequado**:
+  - Oferece predições mais confiáveis, com menor erro absoluto.
+  - Possui custo de predição inferior, o que pode ser relevante em aplicações em tempo real.
+  - O SVR, sem ajuste fino de hiperparâmetros, não trouxe vantagem significativa e apresentou pior desempenho.
+
+
+## 4.9 RESULTADO/OUTPUT (IMAGENS)
+
+
+![image](https://github.com/user-attachments/assets/baad4f47-1deb-40ab-8e1d-49913c2606f2)
+![image](https://github.com/user-attachments/assets/a1a7f267-0e73-4427-8c44-2fc0ee013ac5)
+
+
+# 5 CONCLUSÃO FINAL
 
 Neste trabalho, analisámos e comparámos os algoritmos Minimax, Alfa-Beta  e Monte Carlo , aplicados ao Jogo do Galo. Com isso, conseguimos perceber bem as diferenças entre estratégias que analisam tudo ao detalhe e outras que usam “atalhos” para decidir mais rápido. Também vimos como essas abordagens afetam a rapidez do algoritmo e a qualidade das jogadas.
 
@@ -668,19 +887,28 @@ A Alfa-Beta é uma melhoria do Minimax que ajuda o algoritmo a decidir mais depr
 Já o Monte Carlo (MCTS) usa simulações aleatórias para decidir o que fazer. Em vez de calcular tudo como o Minimax, ele joga várias vezes “na sorte” para ver o que pode resultar melhor. Pode não ser perfeito, mas é bem mais leve e adapta-se bem quando o jogo é mais complexo ou quando queremos decisões rápidas e com jogadas diferentes do habitual.
 Resumindo: se for para jogar bem e rápido no Jogo do Galo, o Minimax com Alfa-Beta é a melhor escolha. Mas se estivermos a lidar com jogos maiores ou quisermos uma IA que não jogue sempre igual, o MCTS é uma boa opção por ser mais flexível e escalável.
 
+
+Neste trabalho, comparamos o ID3 e o SVM no dataset Iris e a Regressão Linear e o SVR no dataset Diabetes, e vimos como cada estratégia se comporta em termos de precisão e rapidez.
+
+No Iris, o ID3, embora bem interpretável, acabou confundindo versicolor e virginica com mais frequência, enquanto o SVM (kernel RBF) conseguiu decidir melhor e foi ligeiramente mais veloz na predição, entregando acurácia superior.
+
+Já no Diabetes, a Regressão Linear provou ser eficiente e simples, gerando erros médios muito menores e explicando quase metade da variância, enquanto o SVR padrão, sem ajustes, não conseguiu melhorar o resultado e ainda deixou a inferência mais lenta. 
+
+Resumindo, para classificações pequenas e precisas no Iris, o SVM com Alpha-Beta (ou melhor, SVM puro, neste caso) é a melhor escolha; para regressões lineares nos dados de Diabetes, a Regressão Linear supera o SVR desconfigurado. Models mais sofisticados só valeriam a pena se fossem ajustados cuidadosamente ou em cenários maiores.
+
 ## FONTES
 
 Slides Teoricos da Cadeira de Sistemas Inteligentes
 
-https://www.hypatiamat.com/jogos/jogoDoGalo/jogoDoGalo_Vhtml.html
-https://www.mygreatlearning.com/blog/alpha-beta-pruning-in-ai/
-https://cs.stanford.edu/people/eroberts/courses/soco/projects/2003-04/intelligent-search/minimax.html
-https://medium.com/data-science/a-gentle-introduction-to-monte-carlo-methods-98451674018d
+https://scikit-learn.org/stable/modules/svm.html
+https://scikit-learn.org/stable/modules/tree.html
+https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html
+https://www.simplilearn.com/10-algorithms-machine-learning-engineers-need-to-know-article
 
 Videos:
 
-https://www.youtube.com/watch?v=KU9Ch59-4vw&t=9s
-https://www.youtube.com/watch?v=9D1hVGumxCo&t=14s
-https://www.youtube.com/watch?v=hhBNk0xmZ9U&t=43s
+https://www.youtube.com/watch?v=aLsReomQ7AA
+https://www.youtube.com/watch?v=CtsRRUddV2s
+https://www.youtube.com/watch?v=_YPScrckx28
 
 
