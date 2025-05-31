@@ -234,6 +234,27 @@ O objetivo final é gerar uma árvore de decisão que generalize bem os dados, p
 
 ### 2.3.5 Código
 
+```python
+# === ID3 (DecisionTreeClassifier com entropia) ===
+dt_id3 = DecisionTreeClassifier(criterion="entropy", random_state=42)
+
+# Treino
+t0_train_dt = time.perf_counter()
+dt_id3.fit(X_train, y_train)
+t1_train_dt = time.perf_counter()
+
+# Predição
+t0_pred_dt = time.perf_counter()
+y_pred_dt = dt_id3.predict(X_test)
+t1_pred_dt = time.perf_counter()
+
+# Avaliação
+acc_dt = accuracy_score(y_test, y_pred_dt)
+cm_dt = confusion_matrix(y_test, y_pred_dt)
+precision_dt = precision_score(y_test, y_pred_dt, average="macro")
+recall_dt = recall_score(y_test, y_pred_dt, average="macro")
+f1_dt = f1_score(y_test, y_pred_dt, average="macro")
+```
 
 
 
@@ -291,6 +312,27 @@ Aqui temos um exemplo:
 
 ### 2.4.4 Código
 
+```python
+# === Regressão Linear ===
+reg_lin = LinearRegression()
+
+# Treino
+t0_train_rl = time.perf_counter()
+reg_lin.fit(X_train, y_train)
+t1_train_rl = time.perf_counter()
+
+# Predição
+t0_pred_rl = time.perf_counter()
+y_pred_rl = reg_lin.predict(X_test)
+t1_pred_rl = time.perf_counter()
+
+# Avaliação
+mse_rl = mean_squared_error(y_test, y_pred_rl)
+rmse_rl = np.sqrt(mse_rl)
+mae_rl = mean_absolute_error(y_test, y_pred_rl)
+r2_rl = r2_score(y_test, y_pred_rl)
+```
+
 ### 2.4.5 Exemplo Prático (VIDEO)
 
 De forma a entender tudo isto de uma maneira mais visual, deixo aqui um vídeo que explica detalhadamente o funcionamento do algoritmo de Regressão Linear:
@@ -347,6 +389,49 @@ Quando os dados não são linearmente separáveis no espaço original, a SVM pod
 O **kernel trick** permite calcular produtos escalares nesse espaço elevado sem computar explicitamente a transformação.
 
 ### 2.5.5 Código
+
+```python
+# === SVM com kernel RBF ===
+svm_clf = SVC(kernel="rbf", C=1.0, gamma="scale", random_state=42)
+
+# Treino
+t0_train_svm = time.perf_counter()
+svm_clf.fit(X_train_scaled, y_train)
+t1_train_svm = time.perf_counter()
+
+# Predição
+t0_pred_svm = time.perf_counter()
+y_pred_svm = svm_clf.predict(X_test_scaled)
+t1_pred_svm = time.perf_counter()
+
+# Avaliação
+acc_svm = accuracy_score(y_test, y_pred_svm)
+cm_svm = confusion_matrix(y_test, y_pred_svm)
+precision_svm = precision_score(y_test, y_pred_svm, average="macro")
+recall_svm = recall_score(y_test, y_pred_svm, average="macro")
+f1_svm = f1_score(y_test, y_pred_svm, average="macro")
+```
+```python
+# === Support Vector Regressor ===
+svr_reg = SVR(kernel="rbf", C=1.0, epsilon=0.1)
+
+# Treino
+t0_train_svr = time.perf_counter()
+svr_reg.fit(X_train_scaled, y_train)
+t1_train_svr = time.perf_counter()
+
+# Predição
+t0_pred_svr = time.perf_counter()
+y_pred_svr = svr_reg.predict(X_test_scaled)
+t1_pred_svr = time.perf_counter()
+
+# Avaliação
+mse_svr = mean_squared_error(y_test, y_pred_svr)
+rmse_svr = np.sqrt(mse_svr)
+mae_svr = mean_absolute_error(y_test, y_pred_svr)
+r2_svr = r2_score(y_test, y_pred_svr)
+```
+
 
 ### 2.5.6 Exemplo Prático (VIDEO)
 
